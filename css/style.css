@@ -1,0 +1,39 @@
+body{
+	color : #DDD;
+	background-color: #3C0077;
+	font-family: verdana;
+}
+
+a{
+	cursor: pointer;
+}
+
+footer{
+	border-top: 5px solid #1A0033;
+	background-color: #1F003E;
+	position: absolute;
+	left: 0;
+	right: 0;
+	padding: 1.2em;
+}
+
+.navbar input{
+	background-color: #333;
+	border: 1px solid #222;
+	color: #DDD;
+}
+
+#news{
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+	background-color: rgba(255,255,255, 0.2) ;
+	padding: 5px;
+	margin-bottom: 20px; 
+}
+
+#loader{
+	display: block;
+	margin: 154px auto;
+}
