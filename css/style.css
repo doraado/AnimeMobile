@@ -15,6 +15,7 @@ footer{
 	left: 0;
 	right: 0;
 	padding: 1.2em;
+	margin-top:20px;
 }
 
 .navbar input{
@@ -36,4 +37,43 @@ footer{
 #loader{
 	display: block;
 	margin: 154px auto;
+}
+
+.vignette{
+	display : inline-table;
+	margin-right:10px;
+	margin-bottom : 10px;
+	border : 0px solid #555;
+
+	background-color : #333;
+	color : #EEE;
+	line-height: 10px;
+	font-size : 8px;
+
+	text-align: right;
+
+	width: 96px;
+	height: 96px;
+	max-height: 96px;
+	overflow: hidden;
+
+	border-radius: 5px;		
+}
+
+.vignette:hover{
+	text-decoration: none;
+	color: #DDD;
+}
+
+.vignette img{
+}
+
+.v_titre{
+	position: relative;
+	padding: 2px;
+	max-width: 92px;
+	height: 50px;
+	width: 92px;
+	background-color: rgba(0,0,0,0.8);
+	bottom: -50px;
 }

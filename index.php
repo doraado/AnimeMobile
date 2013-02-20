@@ -5,7 +5,8 @@
 	<meta name="author" content="KelsDEV">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -33,7 +34,7 @@
             			</ul>
 
             			<form class="navbar-form pull-right">
-              				<input class="span2" placeholder="Email" type="text">
+              				<input class="span2" placeholder="Email" type="email">
               				<input class="span2" placeholder="Password" type="password">
               				<button type="submit" class="btn btn-inverse">Sign in</button>
             			</form>
@@ -68,7 +69,7 @@
 			<div class="row-fluid">
 				<form class="form-search">
 					<div class="input-append">
-						<input type="text" class="span2 search-query" placeholder="Un titre d'anime ?">
+						<input type="text" class="span12 search-query" placeholder="Un titre d'anime ?">
 						<button type="submit" class="btn">Search</button>
 					</div>
 				</form>
@@ -86,6 +87,8 @@
 	-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="jwplayer/jwplayer.js"></script>
+
 	<script type="text/javascript" src="js/script.js"></script>
 
 </body>

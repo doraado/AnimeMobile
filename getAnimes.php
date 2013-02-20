@@ -1,23 +1,36 @@
 <?php 
-	require_once 'app/simple_html_dom.php';
+	// Création d'un flux
+	$opts = array(
+  		'http'	=>	array(
+    			'method'	=>	"GET",
+    			'header'	=>	"Accept-language: en\r\n" 
+  			)
+	);
 
- 	$site = $_POST['href'];
+	$context = stream_context_create($opts);
 
- 	ob_start();
+	if(isset($_POST['href'])){
+ 		$site = $_POST['href'];
+	}
+	else{
+		$site = 'http://www.anime-ultime.net/series-0-1/anime/0---#principal';
+	}
 
- 	include $site;
+	$html = file_get_contents( $site, false, $context ); 
 
- 	$html = ob_get_clean();
+	if( $_POST['type'] != 'episode'){
 
- 	$a_html = explode('<body>', $html);
- 	$a_html = explode('</body>', $a_html[1]);
-	$a_html = explode('<table class="jtable" align="center" cellspacing="0"  cellpadding="1">', $a_html[0]);
-	$a_html = explode('</table>', $a_html[1]);
+		$a_html = explode('<table class="jtable" align="center" cellspacing="0"  cellpadding="1">', $html);
+		$a_html = explode('</table>', $a_html[1]);
 
- 	$html = '<table class="jtable" align="center" cellspacing="0"  cellpadding="1">'.$a_html[0].'</table>';
+	 	echo $html = '<table class="table">'.$a_html[0].'</table>';
+	}
+	else {
+		$regex = "#/stream-(.*?).mp4#";
 
- 	$html = str_replace('<table', '<table class="table"', $html);
- 	
+		preg_match($regex, $html, $out);
 
- 	echo $html;
+		echo $video = 'http://www.anime-ultime.net'.$out[0];
+	}
+	
  ?>
