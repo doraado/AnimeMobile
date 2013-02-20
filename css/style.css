@@ -18,6 +18,10 @@ footer{
 	margin-top:20px;
 }
 
+#temp{
+	display: none;
+}
+
 .navbar input{
 	background-color: #333;
 	border: 1px solid #222;
@@ -43,7 +47,6 @@ footer{
 	display : inline-table;
 	margin-right:10px;
 	margin-bottom : 10px;
-	border : 0px solid #555;
 
 	background-color : #333;
 	color : #EEE;
@@ -57,15 +60,12 @@ footer{
 	max-height: 96px;
 	overflow: hidden;
 
-	border-radius: 5px;		
+	border-radius: 10px;		
 }
 
 .vignette:hover{
 	text-decoration: none;
 	color: #DDD;
-}
-
-.vignette img{
 }
 
 .v_titre{

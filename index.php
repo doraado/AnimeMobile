@@ -9,6 +9,9 @@
 	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
+
+	<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	<title></title>
@@ -82,12 +85,14 @@
 		<p>2013 &copy; Anime Mobile</p>
 		<p>Mention Légale | Contact</p>
 	</footer>
+
+	<div id="temp"></div>
 	<!-- 
 		Loaded Javascript Files 
 	-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="jwplayer/jwplayer.js"></script>
+	<script src="http://vjs.zencdn.net/c/video.js"></script>
 
 	<script type="text/javascript" src="js/script.js"></script>
 

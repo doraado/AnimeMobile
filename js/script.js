@@ -13,6 +13,45 @@ jQuery(function($){
 	var o_animes = o_animes || [];
 
 	/**
+	* Récupération des animes depuis un site distant
+	*/
+	type = 'all';
+	href = 'http://www.anime-ultime.net/series-0-1/anime/0---#principal';
+
+	if(typeof localStorage['Animes']=='undefined' ) {
+		
+		$content.before('<div id="loader"><p>Changement des données ...</p><img src="img/loader.gif"></div>');
+			
+		$('#temp').load("getAnimes.php", { href : href, type:type}, function(res) {	
+			var $table = res;
+
+			$(this).html($table);
+			
+			$('table tr:first').remove();
+
+			$('table tr').each(function(k,elm){
+				var img = $(elm).find('img').attr('data-href');
+				var titre = $(elm).find('a').text();
+				var new_href = 'http://www.anime-ultime.net/'+$(elm).find('a').attr('href');
+							
+				o_animes.push({
+					'titre' : titre,
+					'lien' 	: new_href,
+					'img' 	: 'url('+img+')',
+				});
+
+				if( $('table tr').length - 1 == k ) {
+					localStorage['Animes'] = JSON.stringify(o_animes);
+					$('#loader').remove();
+				}
+			});
+		});		
+	}
+	else{
+		o_animes = JSON.parse(localStorage['Animes']);
+	}
+
+	/**
 	* Get Animes
 	*/
 	$('#btn_animes').click(function(){
@@ -21,39 +60,8 @@ jQuery(function($){
 			$(this).html('<img id="loader" src="img/loader.gif">');
 			$(this).show();
 
-			type = 'all';
-			href = 'http://www.anime-ultime.net/series-0-1/anime/0---#principal';
-
-			if( o_animes.length > 1 ){
-				$(this).html('<img id="loader" src="img/loader.gif">');
-
-				print_list(o_animes);
-				open_anime();
-			}
-			else {
-				$content.load("getAnimes.php", { href : href, type:type}, function(res) {
-					$(this).html(res).hide();
-
-					$('table tr:first').remove();
-
-					$('table tr').each(function(k,elm){
-						var img = $(elm).find('img').attr('data-href');
-						var titre = $(elm).find('a').text();
-						var new_href = 'http://www.anime-ultime.net/'+$(elm).find('a').attr('href');
-						
-						o_animes.push({
-							'titre' : titre,
-							'lien' 	: new_href,
-							'img' 	: 'url('+img+')',
-						});
-					});
-
-					print_list(o_animes);
-					open_anime();
-				});	
-			}
-
-
+			print_list( o_animes );
+			open_anime();
 
 		});
 	});
@@ -108,12 +116,11 @@ jQuery(function($){
                     type = 'episode';
 
 					$content.load("getAnimes.php", { href : href, type:type}, function(res) {
-                        $content.html('<div id="myElement">Loading the player...</div>');
+						var $player = '<video id="player" class="video-js vjs-default-skin" controls preload="auto" width="100%" data-setup="{}">';
+  							$player	+= '<source src="'+res+'" type="video/mp4">';
+							$player += '</video>';
 
-						jwplayer("myElement").setup({
-							file	: res,
-							width	: '100%',
-						});
+                        $content.html($player);
 
 					});
 				});
