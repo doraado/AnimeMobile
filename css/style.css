@@ -61,9 +61,13 @@ footer{
 	max-height: 96px;
 	overflow: hidden;
 
+    -webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
 	border-radius: 10px;
-	webkit-border-radius: 10px;
-	-moz-border-radius: 10px;		
+
+	-webkit-box-shadow: 5px 5px 10px #000;
+		-moz-box-shadow: 5px 5px 10px #000;
+		box-shadow: 5px 5px 10px #000;	
 }
 
 .vignette:hover{
@@ -79,6 +83,11 @@ footer{
 	width: 92px;
 	background-color: rgba(0,0,0,0.8);
 	bottom: -50px;
+}
+
+.v_titre:hover{
+	color: #FFF;
+	background-color: rgba(0,0,0, 0.9);
 }
 
 .form-search{

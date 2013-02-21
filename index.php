@@ -49,9 +49,9 @@
 			<div class="row-fluid">
 				<div id="main_menu" class="span12">
 					<a class="item" href="index?page=news" data-action="News" data-href="news">News</a>
-					<a class="item" href="index?page=animes" data-action="Anime" data-href="http://www.anime-ultime.net/series-0-1/anime/0---#principal">Anime</a>
-					<a class="item" href="index?page=dramas" data-action="Drama" data-href="http://www.anime-ultime.net/series-0-1/drama/0---#principal">Drama</a>
-					<a class="item" href="index?page=tokusatsus" data-action="Tokusatsu" data-href="http://www.anime-ultime.net/series-0-1/tokusatsu/0---#principal">Tokusatsu</a>
+					<a class="item" href="index?page=animes" data-action="Animes" data-href="http://www.anime-ultime.net/series-0-1/anime/0---#principal">Animes</a>
+					<a class="item" href="index?page=dramas" data-action="Dramas" data-href="http://www.anime-ultime.net/series-0-1/drama/0---#principal">Dramas</a>
+					<a class="item" href="index?page=tokusatsus" data-action="Tokusatsus" data-href="http://www.anime-ultime.net/series-0-1/tokusatsu/0---#principal">Tokusatsus</a>
 				</div>
 			</div>
 
@@ -63,7 +63,7 @@
 					</div>
 				</form>
 
-				<div id="search_result"></div>
+				<div id="search_result"></dsiv>
 			</div>
 
 		</div>

@@ -14,14 +14,126 @@ jQuery(function($){
 	*/
 	var o_datas = [];
 
-	//history.pushState({action : 'home'}, 'Liste des animes', '/AnimeMobile/');
+	/**
+	* Recherche
+	*/
+	$('#search_input').keyup(function(){
+		$('h3.titre').remove();
+
+		var input = $(this);
+		var val = input.val();
+
+		var regexp = '\\b(.*)';
+		for(var i in val){
+			regexp +='('+val[i]+')(.*)';
+		}
+		regexp += '\\b';
+
+		var res_animes = [];
+
+		if(val.length > 1){
+			$(this).parent().parent().find('p').remove();
+
+			$.each(o_datas, function( k, v){
+				var titre = v.titre;
+
+				var resultats = titre.match(new RegExp(regexp, 'i'));
+				
+				if(resultats) res_animes.push(v);
+			});
+
+			erase_result();
+			print_page(res_animes, 0, 5);
+			//open_anime();
+		}
+		else{
+			$(this).parent().parent().find('p').remove();
+			$(this).parent().after('<p>Saisis au moins 2 lettres</p>');
+		}
+		 
+	});
+
+	/**
+	* Main Menu
+	*/
+	$('#main_menu .item').click( function(event){
+		event.preventDefault();
+		
+		var $item = $(this);
+		var name = $(this).attr('data-action');
+		var href = $(this).attr('data-href');
+		
+		switch(name){
+			case 'News' : 
+				$.get('news.php', function(res){
+					$content.html(res);
+				});
+				break;
+				
+			case 'Animes':
+			case 'Dramas':
+			case 'Tokusatsus':
+				$(this).siblings().hide();
+
+				$('.form-search').show();
+				$('#form-search').show();
+
+				/**
+				* Récupération des animes depuis un site distant
+				*/
+				if(typeof localStorage[name]=='undefined' ) {
+					
+					loader();
+						
+					$('#temp').load(root+"getAnimes.php", { href : href, type:name}, function(res) {	
+						var $table = res;
+
+						$(this).html($table);
+						
+						$('table tr:first').remove();
+
+						$('table tr').each(function(k,elm){
+							var img = $(elm).find('img').attr('data-href');
+							var titre = $(elm).find('a').text();
+							var new_href = 'http://www.anime-ultime.net/'+$(elm).find('a').attr('href');
+										
+							o_datas.push({
+								'titre' : titre,
+								'lien' 	: new_href,
+								'img' 	: 'url('+img+')',
+							});
+
+							if( $('table tr').length - 1 == k ) {
+								localStorage[name] = JSON.stringify(o_datas);
+								remove_loader();
+							}
+						});
+						$item.text(name+' ('+o_datas.length+')' );
+						print_page(o_datas, 0, 5);
+					});		
+				}
+				else{
+					o_datas = JSON.parse(localStorage[name]);
+					$item.text(name+' ('+o_datas.length+')' );
+					print_page(o_datas, 0, 5);
+				}
+
+				break;
+		}
+	});
 
 	/**
 	* Fonctions
 	*/
+	function format_url(str){
+		var a = str.trim().split(' ');
+
+		return a.join('-');
+	}
+
 	function loader(){
 		$content.fadeOut();
-		$content.before('<div id="loader"><p>Changement des données ...</p><img src="/AnimeMobile/img/loader.gif"></div>');
+		$content.before('<div id="loader"><p>Chargement des données ...</p><img src="/AnimeMobile/img/loader.gif"></div>');
 	}
 
 	function remove_loader(){
@@ -96,7 +208,7 @@ jQuery(function($){
                     $('#div_player').remove();
 
 					$("#temp").load(root+"getAnimes.php", { href : href, type:type}, function(res) {
-						$('#search_result').append('<div id="div_player"><h3 class="titre">'+titre+'</h3><div id="player">Loading the player...</div></div>');
+						$('#search_result').append('<div id="div_player"><h3 class="titre">'+titre+'</h3><div id="player">Chargement du lecteur...</div></div>');
 
 						jwplayer("player").setup({
 							file	: res,
@@ -110,141 +222,6 @@ jQuery(function($){
 		});
 	}
 
-	function format_url(str){
-		var a = str.trim().split(' ');
-
-		return a.join('-');
-	}
-
-	/**
-	* Gestion de l'historique
-	*/
-/*	window.onpopstate = function(event){
-		console.log(event);
-		if( e.state != null ){
-			
-		}
-	}*/
-
-	/**
-	* Recherche
-	*/
-	$('#search_input').keyup(function(){
-	//	$('#news').parent().remove();
-		// $('.prev').remove();
-		// $('.next').remove();
-		$('h3.titre').remove();
-
-		var input = $(this);
-		var val = input.val();
-
-		var regexp = '\\b(.*)';
-		for(var i in val){
-			regexp +='('+val[i]+')(.*)';
-		}
-		regexp += '\\b';
-
-		var res_animes = [];
-
-		if(val.length > 1){
-			$(this).parent().parent().find('p').remove();
-
-			$.each(o_datas, function( k, v){
-				var titre = v.titre;
-
-				var resultats = titre.match(new RegExp(regexp, 'i'));
-				
-				if(resultats && res_animes.length < 6 ){
-					res_animes.push(v);
-				}
-				else{
-					return;
-				}
-			});
-
-			erase_result();
-			print_list(res_animes);
-			open_anime();
-		}
-		else{
-			$(this).parent().parent().find('p').remove();
-			$(this).parent().after('<p>Saisis au moins 2 lettres</p>');
-		}
-
-		console.log(res_animes);
-		 
-	});
-
-	/**
-	* Main Menu
-	*/
-	$('#main_menu .item').click( function(event){
-		event.preventDefault();
-		
-		var $item = $(this);
-		var name = $(this).attr('data-action');
-		var href = $(this).attr('data-href');
-		
-		switch(name){
-			case 'News' : 
-				$.get('news.php', function(res){
-					$content.html(res);
-				});
-				break;
-				
-			case 'Anime':
-			case 'Drama':
-			case 'Tokusatsu':
-				$(this).siblings().hide();
-
-				$('.form-search').show();
-				$('#form-search').show();
-
-				/**
-				* Récupération des animes depuis un site distant
-				*/
-				if(typeof localStorage[name]=='undefined' ) {
-					
-					loader();
-						
-					$('#temp').load(root+"getAnimes.php", { href : href, type:name}, function(res) {	
-						var $table = res;
-
-						$(this).html($table);
-						
-						$('table tr:first').remove();
-
-						$('table tr').each(function(k,elm){
-							var img = $(elm).find('img').attr('data-href');
-							var titre = $(elm).find('a').text();
-							var new_href = 'http://www.anime-ultime.net/'+$(elm).find('a').attr('href');
-										
-							o_datas.push({
-								'titre' : titre,
-								'lien' 	: new_href,
-								'img' 	: 'url('+img+')',
-							});
-
-							if( $('table tr').length - 1 == k ) {
-								localStorage[name] = JSON.stringify(o_datas);
-								remove_loader();
-							}
-						});
-						$item.text(name+' ('+o_datas.length+')' );
-						print_page(o_datas, 0, 5);
-					});		
-				}
-				else{
-					o_datas = JSON.parse(localStorage[name]);
-					$item.text(name+' ('+o_datas.length+')' );
-					print_page(o_datas, 0, 5);
-				//	localStorage.clear();
-				}
-
-				break;
-		}
-	});
-
 	function erase_result(){
 		$('#search_result').html('');
 	}
@@ -255,9 +232,10 @@ jQuery(function($){
 		var next = index + size;
 
 		o_page = slice_obj(obj_buffer, index, size);
-		o_page.push({titre:'Suite...'});
+		
+		if(o_page.length == size) o_page.push({titre:'Suite...'});
+		
 		erase_result();
-		//$('#search_result').after('<a class="item prev"><<</a><a class="item next">>></a>');
 
 		print_list(o_page);
 		open_anime();
