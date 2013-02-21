@@ -1,4 +1,3 @@
-
 <?php 
 	// Création d'un flux
 	$opts = array(
@@ -34,15 +33,5 @@
 		$res = 'http://www.anime-ultime.net'.$out[0];
 	}
 	
-?>
-
-<html>
-<head>
-	<meta charset="utf-8">
-</head>
-<body>
-<?php
 	echo $res;
 ?>
-</body>
-</html>
