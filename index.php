@@ -31,12 +31,11 @@
 
           			<div class="nav-collapse collapse">
             			<ul class="nav">
-			              	<li class="active"><a id="btn_animes">Animes</a></li>
-			              	<li><a href="getAnimes.php">About</a></li>
-			              	<li><a href="#contact">Contact</a></li>
+			              	<li><a href="index.php?page=apropos">A propos</a></li>
+			              	<li><a href="index.php?page=contact">Contact</a></li>
             			</ul>
 
-            			<form class="navbar-form pull-right">
+            			<form class="navbar-form pull-right" method="post" action="connexion.php">
               				<input class="span2" placeholder="Email" type="email">
               				<input class="span2" placeholder="Password" type="password">
               				<button type="submit" class="btn btn-inverse">Sign in</button>
@@ -49,15 +48,15 @@
 	    <div id="content">
 			<div class="row-fluid">
 				<div id="main_menu" class="span12">
-					<a class="item" href="index?page=news" data-href="news">News</a>
-					<a class="item" href="index?page=animes" data-href="http://www.anime-ultime.net/series-0-1/anime/0---#principal">Anime</a>
-					<a class="item" href="index?page=dramas" data-href="http://www.anime-ultime.net/series-0-1/drama/0---#principal">Drama</a>
-					<a class="item" href="index?page=tokusatsus" data-href="http://www.anime-ultime.net/series-0-1/tokusatsu/0---#principal">Tokusatsu</a>
+					<a class="item" href="index?page=news" data-action="news" data-href="news">News</a>
+					<a class="item" href="index?page=animes" data-action="anime" data-href="http://www.anime-ultime.net/series-0-1/anime/0---#principal">Anime</a>
+					<a class="item" href="index?page=dramas" data-action="drama" data-href="http://www.anime-ultime.net/series-0-1/drama/0---#principal">Drama</a>
+					<a class="item" href="index?page=tokusatsus" data-action="tokusatsu" data-href="http://www.anime-ultime.net/series-0-1/tokusatsu/0---#principal">Tokusatsu</a>
 				</div>
 				
 			</div>
-		<?php if(isset($_GET['page']) && $_GET['page'] != 'news'){ ?>
-			<div class="row-fluid">
+
+			<div id="form-search" class="row-fluid">
 				<form class="form-search">
 					<div class="input-append">
 						<input id="search_input" type="text" class="span12 search-query" placeholder="Taper un titre">
@@ -65,7 +64,7 @@
 					</div>
 				</form>
 			</div>
-		<?php } ?>
+
 		</div>
 
 	</div>

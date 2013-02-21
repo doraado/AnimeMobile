@@ -12,50 +12,11 @@ jQuery(function($){
 	/**
 	* Buffers
 	*/
-	var o_animes = o_animes || [];
+	var o_datas = [];
 
 	//history.pushState({action : 'home'}, 'Liste des animes', '/AnimeMobile/');
 
-	/**
-	* Récupération des animes depuis un site distant
-	*/
-	type = 'all';
-	href = 'http://www.anime-ultime.net/series-0-1/anime/0---#principal';
-
-	if(typeof localStorage['Animes']=='undefined' ) {
-		
-		loader();
-			
-		$('#temp').load(root+"getAnimes.php", { href : href, type:type}, function(res) {	
-			var $table = res;
-
-			$(this).html($table);
-			
-			$('table tr:first').remove();
-
-			$('table tr').each(function(k,elm){
-				var img = $(elm).find('img').attr('data-href');
-				var titre = $(elm).find('a').text();
-				var new_href = 'http://www.anime-ultime.net/'+$(elm).find('a').attr('href');
-							
-				o_animes.push({
-					'titre' : titre,
-					'lien' 	: new_href,
-					'img' 	: 'url('+img+')',
-				});
-
-				if( $('table tr').length - 1 == k ) {
-					localStorage['Animes'] = JSON.stringify(o_animes);
-					remove_loader();
-				}
-			});
-		});		
-	}
-	else{
-		o_animes = JSON.parse(localStorage['Animes']);
-	//	localStorage.clear();
-	}
-
+	
 	/**
 	* Get Animes
 	*/
@@ -64,7 +25,7 @@ jQuery(function($){
 		loader();
 
 		$content.fadeOut(function(){
-			print_list( o_animes );
+			print_list( o_datas );
 			open_anime();
 
 			remove_loader();
@@ -209,7 +170,7 @@ jQuery(function($){
 			$(this).parent().parent().find('p').remove();
 			$(this).parent().parent().parent().siblings().remove();
 
-			$.each(o_animes, function( k, v){
+			$.each(o_datas, function( k, v){
 				var titre = v.titre;
 
 				var resultats = titre.match(new RegExp(regexp, 'i'));
@@ -227,38 +188,70 @@ jQuery(function($){
 			$(this).parent().after('<p>Saisis au moins 2 lettres</p>');
 			$(this).parent().parent().parent().siblings().remove();
 		}
-		
-		/**
-		 * Main Menu
-		 */
-		$('#main_menu .item').click(function(event){
-			event.preventDefault();
-			
-			var name = $(this).attr('href');
-			var link = $(this).attr('data-href');
-			
-			switch(name){
-				case 'news' : 
-					$.get('news.php', function(res){
-						$content.html(res);
-					});
-					break;
-					
-				case 'anime':
-					
-					break;
-				
-				case 'drama':
-					
-					break;
-					
-				case 'tokusatsu':
-					
-					break;
-			}
-		});
 		 
 	});
 
-	
+	/**
+	* Main Menu
+	*/
+	$('#main_menu .item').click( function(event){
+		event.preventDefault();
+		
+		var name = $(this).attr('data-action');
+		var href = $(this).attr('data-href');
+		
+		switch(name){
+			case 'news' : 
+				$.get('news.php', function(res){
+					$content.html(res);
+				});
+				break;
+				
+			case 'anime':
+			case 'drama':
+			case 'tokusatsu':
+				$(this).siblings().hide();
+
+				$('#form-search').show();
+
+				/**
+				* Récupération des animes depuis un site distant
+				*/
+				if(typeof localStorage[name]=='undefined' ) {
+					
+					loader();
+						
+					$('#temp').load(root+"getAnimes.php", { href : href, type:name}, function(res) {	
+						var $table = res;
+
+						$(this).html($table);
+						
+						$('table tr:first').remove();
+
+						$('table tr').each(function(k,elm){
+							var img = $(elm).find('img').attr('data-href');
+							var titre = $(elm).find('a').text();
+							var new_href = 'http://www.anime-ultime.net/'+$(elm).find('a').attr('href');
+										
+							o_datas.push({
+								'titre' : titre,
+								'lien' 	: new_href,
+								'img' 	: 'url('+img+')',
+							});
+
+							if( $('table tr').length - 1 == k ) {
+								localStorage[name] = JSON.stringify(o_datas);
+								remove_loader();
+							}
+						});
+					});		
+				}
+				else{
+					o_datas = JSON.parse(localStorage[name]);
+				//	localStorage.clear();
+				}
+
+				break;
+		}
+	});
 });
