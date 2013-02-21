@@ -87,6 +87,8 @@ footer{
 }
 
 #main_menu .item{
+	color:#EEE;
+	display:block;
 	width: 100%;
 	text-align:center;
 	background: #e570e7; /* Old browsers */
