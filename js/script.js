@@ -145,7 +145,7 @@ jQuery(function($){
 
 					titre = $(this).text();
 					href = $(this).attr('href');
-                    type = 'episode';
+                    			type = 'episode';
 
 					$content.load(root+"getAnimes.php", { href : href, type:type}, function(res) {
 						$content.html('<h3>'+titre+'</h3><hr>');
@@ -157,13 +157,13 @@ jQuery(function($){
 								width	: '100%',
 							});
 						}
-                       	else {
-                       		var $player = '<video id="player" class="video-js vjs-default-skin" controls preload="auto" width="100%" data-setup="{}">';
+                       				else {
+                       					var $player = '<video id="player" class="video-js vjs-default-skin" controls preload="auto" width="100%" data-setup="{}">';
   							$player	+= '<source src="'+res+'" type="video/mp4">';
 							$player += '</video><script src="http://vjs.zencdn.net/c/video.js"></script>';
 
-                        	$content.append($player);
-                       	}
+                        				$content.append($player);
+                       				}
 
 						remove_loader();
 					});
