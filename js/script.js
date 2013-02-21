@@ -228,6 +228,35 @@ jQuery(function($){
 			$(this).parent().parent().parent().siblings().remove();
 		}
 		
+		/**
+		 * Main Menu
+		 */
+		$.('#main_menu item').click(function(event){
+			event.preventDefault();
+			
+			var name = $(this).attr('href');
+			var link = $(this).attr('data-href');
+			
+			switch(name){
+				case 'news' : 
+					$content.load('news.php');
+					break;
+					
+				case 'anime':
+					
+					break;
+				
+				case 'drama':
+					
+					break;
+					
+				case 'tokusatsu':
+					
+					break;
+			}
+		});
+		 
 	});
 
+	
 });
