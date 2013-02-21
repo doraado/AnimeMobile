@@ -239,8 +239,8 @@ jQuery(function($){
 			
 			switch(name){
 				case 'news' : 
-					$content.load('news.php', function(res){
-						$(this).html(res);
+					$.get('news.php', function(res){
+						$content.html(res);
 					});
 					break;
 					
