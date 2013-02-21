@@ -48,6 +48,12 @@
       
 	    <div id="content">
 			<div class="row-fluid">
+				<div id="main_menu" class="span12">
+					<a class="item" href="index?page=news" data-href="news">News</a>
+					<a class="item" href="index?page=animes" data-href="animes">Animes</a>
+					<a class="item" href="index?page=dramas" data-href="dramas">Dramas</a>
+					<a class="item" href="index?page=tokusatsus" data-href="tokusatsus">Tokusatsus</a>
+				</div>
 				<div id="news" class="span12">
 					<p>
 						Hellow les accros !
