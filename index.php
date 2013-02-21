@@ -14,7 +14,7 @@
 
 	<link rel="stylesheet" type="text/css" href="/AnimeMobile/css/style.css">
 
-	<title></title>
+	<title>Anime on Mobile</title>
 </head>
 <body>
 	<div class="container-fluid">
@@ -27,7 +27,7 @@
 	           	 		<span class="icon-bar"></span>
 	          		</button>
 
-          			<a class="brand" href="index.php">Anime Mobile</a>
+          			<a class="brand" href="index.php">A.O.M.</a>
 
           			<div class="nav-collapse collapse">
             			<ul class="nav">
@@ -44,7 +44,79 @@
         		</div>
       		</div>
 		</div>
-      
+
+      	<?php
+			$page = (isset($_GET['page'])) ? $_GET['page'] : NULL;
+
+			if($page) {
+				switch ($page) {
+					case 'apropos':
+						?>
+<h3 class="titre">A propos de Anime on Mobile</h3>
+<blockquote>
+	Anime on Mobile ? Késako ?!
+</blockquote>
+<p>
+	Créer en 2013, Anime on Mobile est très... high tech ^^'
+</p>
+<p>
+	Par son nom, il est facile de cerner l'objectif de ce site, sans même être une machine en anglais ;)<br> 
+	En effet, le site a été créer et penser pour les Smartphones. Anime on Mobile, ou A.O.M. pour les intimes, se veut d'offrir un confort en terme de naviguation.
+</p>
+
+<blockquote>
+	Et pourquoi avoir créé un tel site ?
+</blockquote>
+<p>
+	Pour m'offrir ce confort ! Il faut savoir que de plus en plus de gens possèdent un smartphone ou/et une tablette. Un site en version classique, généralement, ça donne pas bien sur de petite résolutions.
+	<br>
+	Mais aussi, c'est pour pouvoir me faire la main dans le développement web orienté smartphone et tablette ^^
+</p>
+<blockquote>
+	D'où proviennent les vidéos proposées en streaming ? Et pourquoi que du streaming d'ailleurs !
+</blockquote>
+<p>
+	Toujours avoir les smartphones et tablettes en tête. Ces gadgets ne sont majoritairement utilisés que pour de la consultation. Et puis, ca évite de saturer vos mémoires internes =)
+</p>
+<p>
+	Quant à la provenance des vidéos, les liens proviennent tout simplement d'un site bien connu, Anime-Ultime.net
+	<br>
+	Donc, si vous êtes sur un ordinateur ou un mac, je vous invite à naviguer directement sur leur site <a href="www.anime-ultime.net">Anime-Ultime</a>.
+</p>
+<blockquote>
+	Qu'est-ce qu'on gagne à s'inscrire sur A.O.M. ?
+</blockquote>
+<p>
+	Bonne question, je passe ...<br>
+	Pon, plus sérieusement ? Des fonctionnalités génialissimes !!! ;)
+</p>
+<p>
+	En fait, on verra tous ça ensemble au fur à mesure. Le site n'est pas terminé, et loin de là ;)
+	<br>
+	Donc n'hésiter à faire des demandes et à participer aux diverses questions tournant autours de ce sujet.
+</p>
+
+						<?php
+						break;
+					
+					case 'contact':
+						?>
+						<form class="form" action="contacter.php">
+							<input name="email" type="email" class="span12" placeholder="Votre email">
+							<input name="sujet" type="text" class="span12" placeholder="A quel sujet ?">
+							<textarea name="message" class="span12" rows="6" placeholder="Votre message"></textarea>    
+
+							<div class="form-actions">
+							    <button type="submit" class="btn btn-primary">Envoyer</button>
+							    <button type="reset" class="btn">Annuler</button>
+						    </div>
+						</form>
+						<?php
+						break;
+				}
+			}
+			else{
+		?>
 	    <div id="content">
 			<div class="row-fluid">
 				<div id="main_menu" class="span12">
@@ -67,12 +139,12 @@
 			</div>
 
 		</div>
-
+		<?php } ?>
 	</div>
 
 	<footer class="footer">
 		<p>2013 &copy; Anime Mobile</p>
-		<p>Mention Légale | Contact</p>
+		<p>Designé et Développé par KHub </p>
 	</footer>
 
 	<div id="temp"></div>

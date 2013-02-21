@@ -181,3 +181,9 @@ h3.titre{
 	border-bottom: 1px solid #DDD;
 	font-size: 14px;
 }
+
+blockquote{
+	font-style: italic;
+	font-family: Arial;
+	
+}
