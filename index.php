@@ -50,31 +50,13 @@
 			<div class="row-fluid">
 				<div id="main_menu" class="span12">
 					<a class="item" href="index?page=news" data-href="news">News</a>
-					<a class="item" href="index?page=animes" data-href="animes">Animes</a>
-					<a class="item" href="index?page=dramas" data-href="dramas">Dramas</a>
-					<a class="item" href="index?page=tokusatsus" data-href="tokusatsus">Tokusatsus</a>
+					<a class="item" href="index?page=animes" data-href="http://www.anime-ultime.net/series-0-1/anime/0---#principal">Anime</a>
+					<a class="item" href="index?page=dramas" data-href="http://www.anime-ultime.net/series-0-1/drama/0---#principal">Drama</a>
+					<a class="item" href="index?page=tokusatsus" data-href="http://www.anime-ultime.net/series-0-1/tokusatsu/0---#principal">Tokusatsu</a>
 				</div>
-				<div id="news" class="span12">
-					<p>
-						Hellow les accros !
-					</p>
-
-					<p>
-						Anime Mobile ? WTF is that s*** ?! <br>
-						Et oui, encore un site dédié aux animes ! Attendez !!! Ne partez pas de suite ;)<br> 
-					</p>
-
-					<p>
-						Anime Mobile est destiné et optimisé pour les Smartphones ^^<br>
-						Bon Okay, t'es sur PC... Mais rassures toi, tu pourras jouir, toi aussi, des fonctionnalités de ce site =D
-					</p>
-
-					<p>
-						Sur ce, place aux animes ! 
-					</p>	
-				</div>
+				
 			</div>
-
+		<?php if(isset($_GET['page']) && $_GET['page'] != 'news'){ ?>
 			<div class="row-fluid">
 				<form class="form-search">
 					<div class="input-append">
@@ -83,6 +65,7 @@
 					</div>
 				</form>
 			</div>
+		<?php } ?>
 		</div>
 
 	</div>
