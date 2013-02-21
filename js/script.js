@@ -239,7 +239,9 @@ jQuery(function($){
 			
 			switch(name){
 				case 'news' : 
-					$content.load('news.php');
+					$content.load('news.php', function(res){
+						$(this).html(res);
+					});
 					break;
 					
 				case 'anime':
