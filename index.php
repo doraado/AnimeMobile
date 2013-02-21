@@ -7,12 +7,12 @@
 	<meta name="keywords" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" type="text/css" href="/AnimeMobile/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/AnimeMobile/css/bootstrap-responsive.min.css">
 
 	<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="/AnimeMobile/css/style.css">
 
 	<title></title>
 </head>
@@ -72,8 +72,8 @@
 			<div class="row-fluid">
 				<form class="form-search">
 					<div class="input-append">
-						<input type="text" class="span12 search-query" placeholder="Un titre d'anime ?">
-						<button type="submit" class="btn">Search</button>
+						<input id="search_input" type="text" class="span12 search-query" placeholder="Taper un titre">
+						<button type="submit" class="btn"><i class="icon-search"></i></button>
 					</div>
 				</form>
 			</div>
@@ -91,10 +91,11 @@
 		Loaded Javascript Files 
 	-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script src="http://vjs.zencdn.net/c/video.js"></script>
+	<script type="text/javascript" src="/AnimeMobile/js/bootstrap.min.js"></script>
 
-	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="/AnimeMobile/jwplayer/jwplayer.js"></script>
+
+	<script type="text/javascript" src="/AnimeMobile/js/script.js"></script>
 
 </body>
 </html>

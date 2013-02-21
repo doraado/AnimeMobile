@@ -1,3 +1,4 @@
+
 <?php 
 	// Création d'un flux
 	$opts = array(
@@ -23,14 +24,25 @@
 		$a_html = explode('<table class="jtable" align="center" cellspacing="0"  cellpadding="1">', $html);
 		$a_html = explode('</table>', $a_html[1]);
 
-	 	echo $html = '<table class="table">'.$a_html[0].'</table>';
+	 	$res = '<table class="table">'.$a_html[0].'</table>';
 	}
 	else {
 		$regex = "#/stream-(.*?).mp4#";
 
 		preg_match($regex, $html, $out);
 
-		echo $video = 'http://www.anime-ultime.net'.$out[0];
+		$res = 'http://www.anime-ultime.net'.$out[0];
 	}
 	
- ?>
+?>
+
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+<?php
+	echo $res;
+?>
+</body>
+</html>
