@@ -8,6 +8,7 @@ jQuery(function($){
 	var type;
 
 	var root = '/AnimeMobile/';
+	var nb_resultats = 7;
 
 	/**
 	* Buffers
@@ -43,7 +44,7 @@ jQuery(function($){
 			});
 
 			erase_result();
-			print_page(res_animes, 0, 5);
+			print_page(res_animes, 0, nb_resultats);
 			//open_anime();
 		}
 		else{
@@ -109,13 +110,13 @@ jQuery(function($){
 							}
 						});
 						$item.text(name+' ('+o_datas.length+')' );
-						print_page(o_datas, 0, 5);
+						print_page(o_datas, 0, nb_resultats);
 					});		
 				}
 				else{
 					o_datas = JSON.parse(localStorage[name]);
 					$item.text(name+' ('+o_datas.length+')' );
-					print_page(o_datas, 0, 5);
+					print_page(o_datas, 0, nb_resultats);
 				}
 
 				break;

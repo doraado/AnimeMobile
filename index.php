@@ -143,7 +143,7 @@
 	</div>
 
 	<footer class="footer">
-		<p>2013 &copy; Anime Mobile</p>
+		<p>2013 &copy; Anime on Mobile</p>
 		<p>Designé et Développé par KHub </p>
 	</footer>
 
