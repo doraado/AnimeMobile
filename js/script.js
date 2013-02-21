@@ -231,7 +231,7 @@ jQuery(function($){
 		/**
 		 * Main Menu
 		 */
-		$('#main_menu item').click(function(event){
+		$('#main_menu .item').click(function(event){
 			event.preventDefault();
 			
 			var name = $(this).attr('href');
