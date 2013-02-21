@@ -47,8 +47,7 @@ footer{
 
 .vignette{
 	display : inline-table;
-	margin-right:10px;
-	margin-bottom : 10px;
+	margin:5px;
 
 	background-color : #333;
 	color : #EEE;
@@ -87,9 +86,16 @@ footer{
 }
 
 #main_menu .item{
-	color:#EEE;
-	display:block;
 	width: 100%;
+	display:block;
+	height:50px;
+	line-height:50px;
+	padding: 0px;
+	font-weight: bold;
+}
+
+.item{
+	color:#EEE;
 	text-align:center;
 
 	background-image: linear-gradient(bottom, rgb(56,25,92) 32%, rgb(136,55,212) 66%, rgb(174,124,230) 83%);
@@ -113,13 +119,16 @@ footer{
 
 	border-radius : 10px;
 	margin-bottom : 20px;
+
+
+	display:inline-block;
 	height:50px;
 	line-height:50px;
-
-	font-weight: bold;
+	padding: 0 10px;
+  	z-index:10;
 }
 
-#main_menu .item:hover{
+.item:hover{
 	background-image: linear-gradient(bottom, rgb(89,39,150) 32%, rgb(161,87,235) 66%, rgb(187,146,235) 83%);
 	background-image: -o-linear-gradient(bottom, rgb(89,39,150) 32%, rgb(161,87,235) 66%, rgb(187,146,235) 83%);
 	background-image: -moz-linear-gradient(bottom, rgb(89,39,150) 32%, rgb(161,87,235) 66%, rgb(187,146,235) 83%);
@@ -135,9 +144,31 @@ footer{
 		color-stop(0.83, rgb(187,146,235))
 	);
 
+	color: #DDD;
 	text-decoration: none;
 }
 
 #form-search{
 	display: none;
+}
+
+#search_result{
+	text-align: center;
+}
+
+.next{
+	position: absolute;
+	top:70%;
+	right: 0;	
+}
+
+.prev{
+	position: absolute;
+	top:70%;
+	left: 0;
+}
+
+h3.titre{
+	border-bottom: 1px solid #DDD;
+	font-size: 14px;
 }

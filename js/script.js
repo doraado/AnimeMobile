@@ -16,24 +16,6 @@ jQuery(function($){
 
 	//history.pushState({action : 'home'}, 'Liste des animes', '/AnimeMobile/');
 
-	
-	/**
-	* Get Animes
-	*/
-	$('#btn_animes').click(function(){
-		$btn_navbar.trigger('click');
-		loader();
-
-		$content.fadeOut(function(){
-			print_list( o_datas );
-			open_anime();
-
-			remove_loader();
-		});
-
-		//history.pushState({action : 'liste_animes'}, 'Liste des animes', '/AnimeMobile/Liste_Animes/');
-	});
-
 	/**
 	* Fonctions
 	*/
@@ -48,13 +30,11 @@ jQuery(function($){
 	}
 
 	function print_list(obj){
-		//$content.html('').show();
 		$.each(obj, function(k, elm){
 			var new_elm = '<a class="vignette" href="'+elm.lien+'"><div class="v_titre">'+elm.titre+'</div></a>';
-			$content.append( new_elm );
-			$content.find('a:last').css('background-image', elm.img );
+			$('#search_result').append( new_elm );
+			$('#search_result').find('a:last').css('background-image', elm.img );
 		});
-
 	}
 
 	function open_anime(){
@@ -62,16 +42,21 @@ jQuery(function($){
 		var img = false;
 
 		$('a.vignette').on('click', function(e){
-			$content.html('').show();
-			loader();
 			e.preventDefault();
+			erase_result();
+			href = $(this).attr('href');
 
-			$content.html('<h3>'+$(this).text()+'</h3><hr>').show();
+			if(href=="undefined") return;
+			
+			$('.form-search').hide();
+			loader();
+
+			$('h3.titre').remove();
+			$('#search_result').before('<h3 class="titre">'+$(this).text()+'</h3>').show();
 
 			//history.pushState({action : 'liste_episodes'}, 'Liste des animes', '/AnimeMobile/Liste_Animes/'+format_url($(this).text()));
 
 			img = $(this).css('background-image');
-			href = $(this).attr('href');
 			type = 'anime';
 
 			$('#temp').load(root+"getAnimes.php", { href : href, type:type}, function(res) {
@@ -106,25 +91,17 @@ jQuery(function($){
 
 					titre = $(this).text();
 					href = $(this).attr('href');
-                    			type = 'episode';
+                    type = 'episode';
 
-					$content.load(root+"getAnimes.php", { href : href, type:type}, function(res) {
-						$content.html('<h3>'+titre+'</h3><hr>');
-						if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-	      					$content.append('<div id="player">Loading the player...</div>');
+                    $('#div_player').remove();
 
-							jwplayer("player").setup({
-								file	: res,
-								width	: '100%',
-							});
-						}
-                       				else {
-                       					var $player = '<video id="player" class="video-js vjs-default-skin" controls preload="auto" width="100%" data-setup="{}">';
-  							$player	+= '<source src="'+res+'" type="video/mp4">';
-							$player += '</video><script src="http://vjs.zencdn.net/c/video.js"></script>';
+					$("#temp").load(root+"getAnimes.php", { href : href, type:type}, function(res) {
+						$('#search_result').append('<div id="div_player"><h3 class="titre">'+titre+'</h3><div id="player">Loading the player...</div></div>');
 
-                        				$content.append($player);
-                       				}
+						jwplayer("player").setup({
+							file	: res,
+							width	: '100%',
+						});
 
 						remove_loader();
 					});
@@ -154,6 +131,9 @@ jQuery(function($){
 	*/
 	$('#search_input').keyup(function(){
 	//	$('#news').parent().remove();
+		// $('.prev').remove();
+		// $('.next').remove();
+		$('h3.titre').remove();
 
 		var input = $(this);
 		var val = input.val();
@@ -168,26 +148,30 @@ jQuery(function($){
 
 		if(val.length > 1){
 			$(this).parent().parent().find('p').remove();
-			$(this).parent().parent().parent().siblings().remove();
 
 			$.each(o_datas, function( k, v){
 				var titre = v.titre;
 
 				var resultats = titre.match(new RegExp(regexp, 'i'));
 				
-				if(resultats){
+				if(resultats && res_animes.length < 6 ){
 					res_animes.push(v);
+				}
+				else{
+					return;
 				}
 			});
 
+			erase_result();
 			print_list(res_animes);
 			open_anime();
 		}
 		else{
 			$(this).parent().parent().find('p').remove();
 			$(this).parent().after('<p>Saisis au moins 2 lettres</p>');
-			$(this).parent().parent().parent().siblings().remove();
 		}
+
+		console.log(res_animes);
 		 
 	});
 
@@ -197,21 +181,23 @@ jQuery(function($){
 	$('#main_menu .item').click( function(event){
 		event.preventDefault();
 		
+		var $item = $(this);
 		var name = $(this).attr('data-action');
 		var href = $(this).attr('data-href');
 		
 		switch(name){
-			case 'news' : 
+			case 'News' : 
 				$.get('news.php', function(res){
 					$content.html(res);
 				});
 				break;
 				
-			case 'anime':
-			case 'drama':
-			case 'tokusatsu':
+			case 'Anime':
+			case 'Drama':
+			case 'Tokusatsu':
 				$(this).siblings().hide();
 
+				$('.form-search').show();
 				$('#form-search').show();
 
 				/**
@@ -244,14 +230,46 @@ jQuery(function($){
 								remove_loader();
 							}
 						});
+						$item.text(name+' ('+o_datas.length+')' );
+						print_page(o_datas, 0, 5);
 					});		
 				}
 				else{
 					o_datas = JSON.parse(localStorage[name]);
+					$item.text(name+' ('+o_datas.length+')' );
+					print_page(o_datas, 0, 5);
 				//	localStorage.clear();
 				}
 
 				break;
 		}
 	});
+
+	function erase_result(){
+		$('#search_result').html('');
+	}
+
+	function print_page(obj, index, size){
+		var obj_buffer = obj;
+		var o_page = [];
+		var next = index + size;
+
+		o_page = slice_obj(obj_buffer, index, size);
+		o_page.push({titre:'Suite...'});
+		erase_result();
+		//$('#search_result').after('<a class="item prev"><<</a><a class="item next">>></a>');
+
+		print_list(o_page);
+		open_anime();
+
+		$('a[href="undefined"]').on('click', function(event){
+			event.preventDefault();
+
+			print_page(obj_buffer, next, size);
+		});
+	}
+
+	function slice_obj(obj, index, size){
+		return obj.slice(index, index+size);
+	}
 });

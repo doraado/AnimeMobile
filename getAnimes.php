@@ -23,7 +23,7 @@
 		$a_html = explode('<table class="jtable" align="center" cellspacing="0"  cellpadding="1">', $html);
 		$a_html = explode('</table>', $a_html[1]);
 
-	 	$res = '<table class="table">'.$a_html[0].'</table>';
+	 	$res = '<table class="table">'.preg_replace('<img src="themes/V4/img/arrow-dl.jpg" />', '', $a_html[0]).'</table>';
 	}
 	else {
 		$regex = "#/stream-(.*?).mp4#";

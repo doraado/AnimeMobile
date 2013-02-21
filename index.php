@@ -48,12 +48,11 @@
 	    <div id="content">
 			<div class="row-fluid">
 				<div id="main_menu" class="span12">
-					<a class="item" href="index?page=news" data-action="news" data-href="news">News</a>
-					<a class="item" href="index?page=animes" data-action="anime" data-href="http://www.anime-ultime.net/series-0-1/anime/0---#principal">Anime</a>
-					<a class="item" href="index?page=dramas" data-action="drama" data-href="http://www.anime-ultime.net/series-0-1/drama/0---#principal">Drama</a>
-					<a class="item" href="index?page=tokusatsus" data-action="tokusatsu" data-href="http://www.anime-ultime.net/series-0-1/tokusatsu/0---#principal">Tokusatsu</a>
+					<a class="item" href="index?page=news" data-action="News" data-href="news">News</a>
+					<a class="item" href="index?page=animes" data-action="Anime" data-href="http://www.anime-ultime.net/series-0-1/anime/0---#principal">Anime</a>
+					<a class="item" href="index?page=dramas" data-action="Drama" data-href="http://www.anime-ultime.net/series-0-1/drama/0---#principal">Drama</a>
+					<a class="item" href="index?page=tokusatsus" data-action="Tokusatsu" data-href="http://www.anime-ultime.net/series-0-1/tokusatsu/0---#principal">Tokusatsu</a>
 				</div>
-				
 			</div>
 
 			<div id="form-search" class="row-fluid">
@@ -63,6 +62,8 @@
 						<button type="submit" class="btn"><i class="icon-search"></i></button>
 					</div>
 				</form>
+
+				<div id="search_result"></div>
 			</div>
 
 		</div>
