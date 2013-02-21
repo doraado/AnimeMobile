@@ -102,4 +102,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e570e7', end
 
 	border-radius : 10px;
 	margin-bottom : 20px;
+	height:50px;
+	line-height:50px;
 }
