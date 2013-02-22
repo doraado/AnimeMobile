@@ -98,19 +98,24 @@ jQuery(function($){
 						$('table tr').each(function(k,elm){
 							var img = $(elm).find('img').attr('data-href');
 							var titre = $(elm).find('a').text();
-							var new_href = 'http://www.anime-ultime.net/'+$(elm).find('a').attr('href');
-										
-							o_datas.push({
-								'titre' : titre,
-								'lien' 	: new_href,
-								'img' 	: 'url('+img+')',
-							});
+							var href = $(elm).find('a').attr('href');
+
+							if(href!='undefined'){
+								var new_href = 'http://www.anime-ultime.net/'+href;
+											
+								o_datas.push({
+									'titre' : titre,
+									'lien' 	: new_href,
+									'img' 	: 'url('+img+')',
+								});	
+							}
 
 							if( $('table tr').length - 1 == k ) {
 								localStorage[name] = JSON.stringify(o_datas);
 								remove_loader();
 							}
 						});
+						
 						$item.text(name+' ('+o_datas.length+')' );
 						print_page(o_datas, 0, nb_resultats);
 					});		

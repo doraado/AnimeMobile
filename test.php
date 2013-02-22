@@ -56,27 +56,16 @@
 					$apiSecret = '6a10b98fec2d508608d602314c804aa97aeb91f8';
 
 $api = new Dailymotion();
-$api->setGrantType(Dailymotion::GRANT_TYPE_TOKEN, $apiKey, $apiSecret);
-
-try
-{
-    $result = $api->get('/animeonmobile/videos', array('fields' => 'id,title,description'));
-}
-catch (DailymotionAuthRequiredException $e)
-{
-    // Redirect the user to the Dailymotion authorization page
-    header('Location: ' . $api->getAuthorizationUrl());
-    return;
-}
-catch (DailymotionAuthRefusedException $e)
-{
-    // Handle case when user refused to authorize
-    // <YOUR CODE>
-}
+$api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $apiKey, $apiSecret, null,
+                       array('username' => 'animeonmobile', 'password' => 'Tiger1986'));
+dump($api);
 
 
-    $url = $api->uploadFile('video/stream-52860.mp4');
-    $result = $api->post('/animeonmobile/videos', array('url' => $url, 'title' => 'Vidéo Test') );
+
+$url = $api->uploadFile('video/stream-52860.mp4');
+//$result = $api->post('/animeonmobile/videos', array('url' => $url, 'title' => 'Vidéo Test') ); 
+
+$result = $api->get('/animeonmobile/videos', array('fields' => 'id,title,description'));
 
 dump($url);
 dump($result);
