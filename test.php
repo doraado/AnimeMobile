@@ -76,7 +76,8 @@ if (isset($_POST['username']) || isset($_POST['password']))
 }
 else
 {
-    $api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $apiKey, $apiSecret, $scope = array('manage_videos'));
+    $api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $apiKey, $apiSecret, $scope = array('manage_videos'),
+                       array('username' => 'animeonmobile', 'password' => 'Tiger1986'));
 }
 
 try
