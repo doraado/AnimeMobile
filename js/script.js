@@ -185,6 +185,7 @@ jQuery(function($){
 			type = 'anime';
 
 			$('#temp').load(root+"getAnimes.php", { href : href, type:type}, function(res) {
+				o_anime = [];
 		 		$(this).html(res).hide();
 				$('table tr:first').remove();
 				
@@ -205,7 +206,7 @@ jQuery(function($){
 					
 				});
 			var synopsis = $('#synopsis').html();
-			console.log(res);
+			
 			if(synopsis.length == 0) synopsis = '<br>Information non disponible.'; 
 			
 			load_modal(anime_titre, '<p>'+synopsis+'</p>', 'synopsis');
