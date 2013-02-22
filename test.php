@@ -83,6 +83,9 @@ else
 try
 {
     $result = $api->get('/me/videos', array('fields' => 'id,title,description'));
+
+    $url = $api->uploadFile('video/stream-52860.mp4');
+	$result = $api->post('/animeonmobile/videos', array('url' => $url, 'title' => 'Vidéo Test') ); 
 }
 catch (DailymotionAuthRequiredException $e)
 {
@@ -90,6 +93,7 @@ catch (DailymotionAuthRequiredException $e)
     // <YOUR CODE>
 }
 
+dump($url);
 dump($result);
 				?>
 			</div>
