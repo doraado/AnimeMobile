@@ -245,7 +245,8 @@ jQuery(function($){
 
 							jwplayer("player").setup({
 								file	: res,
-								height	: '100%',
+								height	: '90%',
+								width 	: '100%', 
 							});
 
 							remove_loader();
