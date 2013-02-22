@@ -59,13 +59,20 @@
 					$api->setGrantType(Dailymotion::GRANT_TYPE_AUTHORIZATION, $apiKey, $apiSecret);
 
 dump($_GET);
+$result = $api->get('/animeonmobile/videos', array('fields' => 'id,title,description'));
+
+    $url = $api->uploadFile('http://www.anime-ultime.net/stream-52860.mp4');
+    $result = $api->post('/animeonmobile/videos', array('url' => $url, 'title' => 'Vidéo Test') );
+    
+dump($url);
+dump($result);
 try
 {
     $result = $api->get('/animeonmobile/videos', array('fields' => 'id,title,description'));
 
     $url = $api->uploadFile('http://www.anime-ultime.net/stream-52860.mp4');
     $result = $api->post('/animeonmobile/videos', array('url' => $url, 'title' => 'Vidéo Test') );
-    
+
 dump($url);
 dump($result);
 }
