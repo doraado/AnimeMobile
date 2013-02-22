@@ -285,4 +285,10 @@ jQuery(function($){
 	function slice_obj(obj, index, size){
 		return obj.slice(index, index+size);
 	}
+
+	$('#clear').click(function(){
+		localStorage.clear();
+	});
+	
 });
+	

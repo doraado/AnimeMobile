@@ -33,6 +33,9 @@
             			<ul class="nav">
 			              	<li><a href="index.php?page=apropos">A propos</a></li>
 			              	<li><a href="index.php?page=contact">Contact</a></li>
+			              	<li class="divider-vertical"></li>
+			              	<li><a href="index.php?page=contact">Resynchroniser</a></li>
+			              	<li class="divider-vertical"></li>
             			</ul>
 
             			<form class="navbar-form pull-right" method="post" action="connexion.php">
