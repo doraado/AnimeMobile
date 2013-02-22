@@ -1,3 +1,4 @@
+<?php require_once 'app/dm/Dailymotion.php'; ?>
 <!DOCTYPE HTML>		
 <html>
 <head>
