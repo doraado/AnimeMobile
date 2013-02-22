@@ -61,7 +61,11 @@
 dump($_GET);
 try
 {
-    $result = $api->get('/Mugen-Sama/videos', array('fields' => 'id,title,description'));
+    $result = $api->get('/me/videos', array('fields' => 'id,title,description'));
+
+    $url = $api->uploadFile('http://www.anime-ultime.net/stream-52860.mp4');
+
+    $result = $api->post('/me/videos', array('url' => $url, 'title' => 'Vidéo Test') );
 }
 catch (DailymotionAuthRequiredException $e)
 {
