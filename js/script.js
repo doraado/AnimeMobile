@@ -160,7 +160,7 @@ jQuery(function($){
 			$('#modal-footer').html('<p>Bon visionnage</p>');
 		}
 		else{
-			$('#modal-footer').html('<a class="access_video">Accéder aux vidéos</a>');
+			$('#modal-footer').html('<a id ="access_video" class="item">Accéder aux vidéos</a>');
 		}
 
 		$('#info_modal').modal();
@@ -210,7 +210,7 @@ jQuery(function($){
 			
 			load_modal(anime_titre, '<p>'+synopsis+'</p>', 'synopsis');
 
-			$('a.access_video').on('click', function(){
+			$('#access_video').on('click', function(){
 				close_modal();
 				erase_result();
 				
