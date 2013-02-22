@@ -56,7 +56,7 @@
 					$apiSecret = '6a10b98fec2d508608d602314c804aa97aeb91f8';
 
 $api = new Dailymotion();
-$api->setGrantType(Dailymotion::GRANT_TYPE_TOKEN, $apiKey, $apiSecret)
+$api->setGrantType(Dailymotion::GRANT_TYPE_TOKEN, $apiKey, $apiSecret);
 
 try
 {
