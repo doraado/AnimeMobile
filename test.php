@@ -61,11 +61,10 @@
 dump($_GET);
 try
 {
-    $result = $api->get('/me/videos', array('fields' => 'id,title,description'));
+    $result = $api->get('/animeonmobile/videos', array('fields' => 'id,title,description'));
 
     $url = $api->uploadFile('http://www.anime-ultime.net/stream-52860.mp4');
-dump($url);
-    $result = $api->post('/me/videos', array('url' => $url, 'title' => 'Vidéo Test') );
+    $result = $api->post('/animeonmobile/videos', array('url' => $url, 'title' => 'Vidéo Test') );
 }
 catch (DailymotionAuthRequiredException $e)
 {
@@ -73,6 +72,7 @@ catch (DailymotionAuthRequiredException $e)
     header('Location: ' . $api->getAuthorizationUrl());
     return;
 }
+dump($url);
 dump($result);
 
 
