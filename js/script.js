@@ -237,7 +237,7 @@ jQuery(function($){
 	                    $('#div_player').remove();
 
 						$("#temp").load(root+"getAnimes.php", { href : href, type:type}, function(res) {
-							var $player = res+'<div id="player">Chargement du lecteur...</div>';
+							var $player = '<div id="player">Chargement du lecteur...</div>';
 							
 							load_modal(titre, $player, 'video');
 

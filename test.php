@@ -56,11 +56,11 @@
 					$apiSecret = '6a10b98fec2d508608d602314c804aa97aeb91f8';
 
 $api = new Dailymotion();
-$api->setGrantType(Dailymotion::GRANT_TYPE_TOKEN, $apiKey, $apiSecret);
+$api->setGrantType(Dailymotion::GRANT_TYPE_TOKEN, $apiKey, $apiSecret)
 
 try
 {
-    $result = $api->get('/me/videos', array('fields' => 'id,title,description'));
+    $result = $api->get('/animeonmobile/videos', array('fields' => 'id,title,description'));
 }
 catch (DailymotionAuthRequiredException $e)
 {
@@ -74,8 +74,9 @@ catch (DailymotionAuthRefusedException $e)
     // <YOUR CODE>
 }
 
-    $url = $api->uploadFile('http://www.anime-ultime.net/stream-52860.mp4');
-//    $result = $api->post('/animeonmobile/videos', array('url' => $url, 'title' => 'Vidéo Test') );
+
+    $url = $api->uploadFile('video/stream-52860.mp4');
+    $result = $api->post('/animeonmobile/videos', array('url' => $url, 'title' => 'Vidéo Test') );
 
 dump($url);
 dump($result);
