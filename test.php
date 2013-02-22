@@ -56,20 +56,40 @@
 					$apiSecret = '6a10b98fec2d508608d602314c804aa97aeb91f8';
 
 $api = new Dailymotion();
-$api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $apiKey, $apiSecret, null,
-                       array('username' => 'animeonmobile', 'password' => 'Tiger1986'));
-dump($api);
+// $api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $apiKey, $apiSecret, null,
+//                        array('username' => 'animeonmobile', 'password' => 'Tiger1986'));
+// dump($api);
 
 
 
-$url = $api->uploadFile('video/stream-52860.mp4');
-//$result = $api->post('/animeonmobile/videos', array('url' => $url, 'title' => 'Vidéo Test') ); 
+// $url = $api->uploadFile('video/stream-52860.mp4');
+// //$result = $api->post('/animeonmobile/videos', array('url' => $url, 'title' => 'Vidéo Test') ); 
 
-$result = $api->get('/animeonmobile/videos', array('fields' => 'id,title,description'));
+// $result = $api->get('/animeonmobile/videos', array('fields' => 'id,title,description'));
 
-dump($url);
+// dump($url);
+// dump($result);
+if (isset($_POST['username']) || isset($_POST['password']))
+{
+    $api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $apiKey, $apiSecret, $scope = array('manage_videos'),
+                       array('username' => $_POST['username'], 'password' => $_POST['password']));
+}
+else
+{
+    $api->setGrantType(Dailymotion::GRANT_TYPE_PASSWORD, $apiKey, $apiSecret, $scope = array('manage_videos'));
+}
+
+try
+{
+    $result = $api->get('/me/videos', array('fields' => 'id,title,description'));
+}
+catch (DailymotionAuthRequiredException $e)
+{
+    // Ask user's Dailymotion login/password
+    // <YOUR CODE>
+}
+
 dump($result);
-
 				?>
 			</div>
 		</div>
