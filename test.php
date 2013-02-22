@@ -56,13 +56,12 @@
 					$apiSecret = '6a10b98fec2d508608d602314c804aa97aeb91f8';
 					$api = new Dailymotion();
 
-					$api->setGrantType(Dailymotion::GRANT_TYPE_AUTHORIZATION, $apiKey, $apiSecret, null,
-                       	array('username' => 'animeonmobile', 'password' => 'Tiger1986'));
-dump($result);
+					$api->setGrantType(Dailymotion::GRANT_TYPE_AUTHORIZATION, $apiKey, $apiSecret);
+
 dump($_GET);
 try
 {
-    $result = $api->get('/videos', array('fields' => 'id,title,description'));
+    $result = $api->get('/Mugen-Sama/videos', array('fields' => 'id,title,description'));
 }
 catch (DailymotionAuthRequiredException $e)
 {
@@ -70,7 +69,7 @@ catch (DailymotionAuthRequiredException $e)
     header('Location: ' . $api->getAuthorizationUrl());
     return;
 }
-
+dump($result);
 
 
 				?>
