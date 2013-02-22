@@ -20,12 +20,13 @@
 	$html = mb_convert_encoding( $html, 'utf-8', 'iso-8859-1');
 
 	if( $_POST['type'] != 'episode'){
-		$regex = "#(Synopsis)(.*?)(Source)#";
-
 		$a_html = explode('Synopsis:', $html);
 		$a_html = explode('Source:', $a_html[1]);
+		$a_html = explode('Source :', $a_html[0]);
 
-		$info = '<div id="synopsis">'.str_replace('style="color: #0040FF"', '', str_replace('<strong>', '', $a_html[0])).'</div>';
+		$synopsis = str_replace('style="color: #0040FF"', '', str_replace('<strong>', '', $a_html[0]));
+		$synopsis = str_replace('style="color: #FF8000"', '', $synopsis);
+		$info = '<div id="synopsis">'.$synopsis.'</div>';
 
 		$a_html = explode('<table class="jtable" align="center" cellspacing="0"  cellpadding="1">', $html);
 		$a_html = explode('</table>', $a_html[1]);

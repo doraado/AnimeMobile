@@ -202,7 +202,12 @@ blockquote{
 
 #modal-body{
 	line-height: 10px;
-	padding: 0 5px;
+	padding: 0 5px;	
+	max-height: 250px;
+	height: 250px;
+	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: scroll; 
 }
 
 #modal-body span{
@@ -211,4 +216,8 @@ blockquote{
 
 #modal-footer{
 	text-align: center;
+}
+
+#player{
+	margin: auto;
 }

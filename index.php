@@ -157,7 +157,6 @@
 	<p>One fine body…</p>
 	</div>
 	<div id="modal-footer">
-		<a class="item">Accéder aux vidéos</a>
 	</div>
 	</div>
 

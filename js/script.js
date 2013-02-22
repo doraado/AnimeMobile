@@ -152,9 +152,17 @@ jQuery(function($){
 		});
 	}
 
-	function load_modal(title, body, link){
+	function load_modal(title, body, type){
 		$('#modal-title').text(title);
 		$('#modal-body').html(body);
+
+		if(type == 'video'){
+			$('#modal-footer').html('<p>Bon visionnage</p>');
+		}
+		else{
+			$('#modal-footer').html('<a class="item">Accéder aux vidéos</a>');
+		}
+
 		$('#info_modal').modal();
 	}
 
@@ -197,9 +205,10 @@ jQuery(function($){
 					
 				});
 			var synopsis = $('#synopsis').html();
+			console.log(res);
 			if(synopsis.length == 0) synopsis = '<br>Information non disponible.'; 
 			
-			load_modal(anime_titre, '<p>'+synopsis+'</p>', href);
+			load_modal(anime_titre, '<p>'+synopsis+'</p>', 'synopsis');
 
 			$('a.item').on('click', function(){
 				close_modal();
@@ -227,11 +236,15 @@ jQuery(function($){
 	                    $('#div_player').remove();
 
 						$("#temp").load(root+"getAnimes.php", { href : href, type:type}, function(res) {
-							$('#search_result').append('<div id="div_player"><h3 class="titre">'+titre+'</h3><div id="player">Chargement du lecteur...</div></div>');
+							var $player = '<div id="player">Chargement du lecteur...</div>';
+							
+							load_modal(titre, $player, 'video');
+
+//							$('#search_result').append('<div id="div_player"><h3 class="titre">'+titre+'</h3><div id="player">Chargement du lecteur...</div></div>');
 
 							jwplayer("player").setup({
 								file	: res,
-								width	: '100%',
+								height	: '100%',
 							});
 
 							remove_loader();
