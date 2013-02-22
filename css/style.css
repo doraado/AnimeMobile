@@ -129,6 +129,7 @@ footer{
 	border-radius : 10px;
 	margin-bottom : 20px;
 
+	text-decoration: none;
 
 	display:inline-block;
 	height:50px;
@@ -154,7 +155,6 @@ footer{
 	);
 
 	color: #DDD;
-	text-decoration: none;
 }
 
 #form-search{
@@ -186,4 +186,29 @@ blockquote{
 	font-style: italic;
 	font-family: Arial;
 	
+}
+
+/**
+* Info Modal
+*/
+#info_modal{
+	background-color: #3C0077;
+	font-size: 9px;
+}
+
+#modal-title{
+	font-size: 14px;
+}
+
+#modal-body{
+	line-height: 10px;
+	padding: 0 5px;
+}
+
+#modal-body span{
+	color: #BBB;
+}
+
+#modal-footer{
+	text-align: center;
 }

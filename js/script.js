@@ -79,6 +79,8 @@ jQuery(function($){
 				$('.form-search').show();
 				$('#form-search').show();
 
+				$('h3.titre').remove();
+
 				/**
 				* Récupération des animes depuis un site distant
 				*/
@@ -150,24 +152,26 @@ jQuery(function($){
 		});
 	}
 
+	function load_modal(title, body, link){
+		$('#modal-title').text(title);
+		$('#modal-body').html(body);
+		$('#info_modal').modal();
+	}
+
+	function close_modal(){
+		$('#info_modal').modal('hide');
+	}
+
 	function open_anime(){
 		var o_anime = [];
 		var img = false;
 
 		$('a.vignette').on('click', function(e){
 			e.preventDefault();
-			erase_result();
-			href = $(this).attr('href');
-
-			if(href=="undefined") return;
+			var anime_titre = $(this).find('.v_titre').text();
 			
-			$('.form-search').hide();
-			loader();
-
-			$('h3.titre').remove();
-			$('#search_result').before('<h3 class="titre">'+$(this).text()+'</h3>').show();
-
-			//history.pushState({action : 'liste_episodes'}, 'Liste des animes', '/AnimeMobile/Liste_Animes/'+format_url($(this).text()));
+			href = $(this).attr('href');
+			if(href=="undefined") return;
 
 			img = $(this).css('background-image');
 			type = 'anime';
@@ -192,31 +196,46 @@ jQuery(function($){
 					});
 					
 				});
+			var synopsis = $('#synopsis').html();
+			if(synopsis.length == 0) synopsis = '<br>Information non disponible.'; 
+			
+			load_modal(anime_titre, '<p>'+synopsis+'</p>', href);
 
-				print_list(o_anime);
-				remove_loader();
+			$('a.item').on('click', function(){
+				close_modal();
+				erase_result();
+				
+				$('.form-search').hide();
+				loader();
 
-				$('a.vignette').on('click', function(e){
-					loader();
-					e.preventDefault();
+				$('h3.titre').remove();
+				$('#search_result').before('<h3 class="titre">'+anime_titre+'</h3>').show();
 
-					//history.pushState({action : 'episode'}, 'Liste des animes', '/AnimeMobile/Liste_Animes/Episode/'+format_url($(this).text()));
+					print_list(o_anime);
+					remove_loader();
 
-					titre = $(this).text();
-					href = $(this).attr('href');
-                    type = 'episode';
+					$('a.vignette').on('click', function(e){
+						loader();
+						e.preventDefault();
 
-                    $('#div_player').remove();
+						//history.pushState({action : 'episode'}, 'Liste des animes', '/AnimeMobile/Liste_Animes/Episode/'+format_url($(this).text()));
 
-					$("#temp").load(root+"getAnimes.php", { href : href, type:type}, function(res) {
-						$('#search_result').append('<div id="div_player"><h3 class="titre">'+titre+'</h3><div id="player">Chargement du lecteur...</div></div>');
+						titre = $(this).text();
+						href = $(this).attr('href');
+	                    type = 'episode';
 
-						jwplayer("player").setup({
-							file	: res,
-							width	: '100%',
+	                    $('#div_player').remove();
+
+						$("#temp").load(root+"getAnimes.php", { href : href, type:type}, function(res) {
+							$('#search_result').append('<div id="div_player"><h3 class="titre">'+titre+'</h3><div id="player">Chargement du lecteur...</div></div>');
+
+							jwplayer("player").setup({
+								file	: res,
+								width	: '100%',
+							});
+
+							remove_loader();
 						});
-
-						remove_loader();
 					});
 				});
 			});

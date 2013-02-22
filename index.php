@@ -147,6 +147,21 @@
 		<p>Designé et Développé par KHub </p>
 	</footer>
 
+	<!-- Modal -->
+	<div id="info_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h3 id="modal-title">Modal header</h3>
+	</div>
+	<div id="modal-body">
+	<p>One fine body…</p>
+	</div>
+	<div id="modal-footer">
+		<a class="item">Accéder aux vidéos</a>
+	</div>
+	</div>
+
+	<!-- Div pour le traitement des données temporaires -->
 	<div id="temp"></div>
 	<!-- 
 		Loaded Javascript Files 
