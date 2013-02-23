@@ -13,7 +13,7 @@
 	}
 	else{
 		if(!isset($_GET['token'])){
-			$next = "http://127.0.0.1/AnimeMobile/upload.php";
+			$next = "http://109.232.235.200/AnimeMobile/upload.php";
 			$scope = "http://gdata.youtube.com";
 			$secure = false;
 			$session = true;
