@@ -31,6 +31,7 @@
 
 		$a_html = explode('Source:', $a_html[1]);
 		$a_html = explode('Source :', $a_html[0]);
+		$a_html = explode('Source</strong> :', $a_html[0]);
 
 		$synopsis = str_replace('style="color: #0040FF"', '', str_replace('<strong>', '', $a_html[0]));
 		$synopsis = str_replace('style="color: #FF8000"', '', $synopsis);
