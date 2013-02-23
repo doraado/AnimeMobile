@@ -1,6 +1,6 @@
 <?php 
 	set_time_limit(0);
-	require_once 'Zend/loader.php'; 
+	require_once 'Zend/Loader.php'; 
 	Zend_Loader::loadClass('Zend_Gdata_Youtube');
 	Zend_Loader::loadClass('Zend_Gdata_AuthSub');
 
