@@ -8,12 +8,9 @@ jQuery(function($){
 	var type;
 
 	var root = '/AnimeMobile/';
-	var nb_resultats = 7;
 
-	/**
-	* Buffers
-	*/
-	var o_datas = [];
+	// Nombres de vignettes à afficher
+	var nb_resultats = 7;
 
 	/**
 	* Recherche
@@ -68,6 +65,8 @@ jQuery(function($){
 		$('#form-search').show();
 		$('h3.titre').remove();
 
+		var o_datas = [];
+
 		switch(name){
 			case 'News' : 
 				$('.form-search').hide();
@@ -91,6 +90,7 @@ jQuery(function($){
 							var new_href = 'http://www.anime-ultime.net/'+href;
 											
 							o_datas.push({
+
 								'titre' : titre,
 								'lien' 	: new_href,
 								'img' 	: 'url('+img+')',
@@ -120,12 +120,19 @@ jQuery(function($){
 
 						$(this).html($table);
 						
-						$('table tr:first').remove();
+						$('.table tr:first').remove();
 
-						$('table tr').each(function(k,elm){
-							var img = $(elm).find('img').attr('data-href');
+						var total = $('.table tr').length;
+
+						$('.table tr').each(function(k,elm){
+							$(this).find('td:first').remove();
+
+							var img = $(elm).find('a').attr('onMouseOver');
 							var titre = $(elm).find('a').text();
 							var href = $(elm).find('a').attr('href');
+
+							img = img.replace("montre('<img src=", '');
+							img = img.replace("></a>');", '');
 
 							if(href!='undefined'){
 								var new_href = 'http://www.anime-ultime.net/'+href;
@@ -137,10 +144,17 @@ jQuery(function($){
 								});	
 							}
 
-							if( $('table tr').length - 1 == k ) {
+							if( $('.table tr').length - 1 == k ) {
 								localStorage[name] = JSON.stringify(o_datas);
 								remove_loader();
 							}
+
+							/**
+							* Calcul pourcentage
+							*/
+							var pourcentage = 100*k/total;
+							$('#loader p span').remove();
+							$('#loader p').append(' <span id="pourcentage">'+pourcentage+' %</span>');
 						});
 
 						$item.text(name+' ('+o_datas.length+')' );
@@ -192,8 +206,12 @@ jQuery(function($){
 			$('#modal-footer').html('<p>Bon visionnage</p>');
 		}
 		else{
-			$('#modal-footer').html('<a id ="access_video" class="item">Accéder aux vidéos</a>');
+			$('#modal-footer').html('<a id ="access_video" class="item">Accéder aux vidéos</a><a id ="next_vignette" class="item">Suivant</a>');
 		}
+
+		$('#modal-body span').css({
+			color : '#BBB',
+		});
 
 		$('#info_modal').modal();
 	}
@@ -208,12 +226,13 @@ jQuery(function($){
 
 		$('a.vignette').on('click', function(e){
 			e.preventDefault();
-			var anime_titre = $(this).find('.v_titre').text();
+			var $this = $(this);
+			var anime_titre = $this.find('.v_titre').text();
 			
-			href = $(this).attr('href');
+			href = $this.attr('href');
 			if(href=="undefined") return;
 
-			img = $(this).css('background-image');
+			img = $this.css('background-image');
 			type = 'anime';
 
 			$('#temp').load(root+"getAnimes.php", { href : href, type:type}, function(res) {
@@ -238,13 +257,27 @@ jQuery(function($){
 					
 				});
 			var synopsis = $('#synopsis').html();
-			
+			var s_img = '<img src="'+img.replace('url(', '').replace(')', '')+'" class="anime_img">';
+
 			if(synopsis.length == 0) synopsis = '<br>Information non disponible.'; 
 			
-			load_modal(anime_titre, '<p>'+synopsis+'</p>', 'synopsis');
+			load_modal(anime_titre, s_img+'<p>'+synopsis+'</p>', 'synopsis');
+
+			/**
+			* Bouton next anime
+			*/
+			$('#next_vignette').on('click', function(){
+				var $next = $this.next();
+
+				$next.trigger('click');
+				
+				if( $next.attr('href') == 'undefined') {
+					$('a.vignette:first').trigger('click');
+				}
+
+			});
 
 			$('#access_video').on('click', function(){
-				close_modal();
 				erase_result();
 				
 				$('.form-search').hide();

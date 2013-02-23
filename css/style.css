@@ -136,7 +136,7 @@ footer{
 	box-shadow: 5px 5px 10px #000;
 
 	border-radius : 10px;
-	margin-bottom : 20px;
+	margin : 10px;
 
 	text-decoration: none;
 
@@ -218,14 +218,17 @@ blockquote{
 	overflow-x: hidden;
 }
 
-#modal-body span{
-	color: #BBB;
-}
-
 #modal-footer{
 	text-align: center;
 }
 
 #player{
 	margin: auto;
+}
+
+.anime_img{
+	width: 20%;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
