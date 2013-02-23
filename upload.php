@@ -4,7 +4,7 @@
 	Zend_Loader::loadClass('Zend_Gdata_YouTube');
 	Zend_Loader::loadClass('Zend_Gdata_AuthSub');
 
-	$key = 'AIzaSyCxgPUZRCAc854zRs__tg6jYgqkm3OUADQ';
+	$key = 'AIzaSyCr2jQ-YI1yRgX2HjDfZS-6Uwp6jKUYSuI';
 
 	session_start();
 
@@ -26,8 +26,6 @@
 			$_SESSION['YouTubetoken'] = $token;
 		}	
 	}
-
-	die($token);
 
 	$httpClient = Zend_Gdata_AuthSub::getHttpClient($token);
 	
