@@ -27,6 +27,8 @@
 		}	
 	}
 
+	die($token);
+
 	$httpClient = Zend_Gdata_AuthSub::getHttpClient($token);
 	
 	$yt = new Zend_Gdata_YouTube($httpClient, 'Anime On Mobile', null, $key);
