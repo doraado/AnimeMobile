@@ -21,8 +21,8 @@
 			header('Location:'.Zend_Gdata_AuthSub::getAuthSubTokenUri($next, $scope, $secure, $session));
 		}
 		else{
-			$token = $_GET['token'];
-			//$token = Zend_Gdata_AuthSub::getAuthSubSessionToken($_GET['token']);
+			//$token = $_GET['token'];
+			$token = Zend_Gdata_AuthSub::getAuthSubSessionToken($_GET['token']);
 			$_SESSION['YouTubetoken'] = $token;
 		}	
 	}
