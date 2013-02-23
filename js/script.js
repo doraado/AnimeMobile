@@ -63,23 +63,50 @@ jQuery(function($){
 		var $item = $(this);
 		var name = $(this).attr('data-action');
 		var href = $(this).attr('data-href');
-		
+
+		$(this).siblings().hide();
+		$('#form-search').show();
+		$('h3.titre').remove();
+
 		switch(name){
 			case 'News' : 
-				$.get('news.php', function(res){
-					$content.html(res);
+				$('.form-search').hide();
+				loader();
+
+				$('#temp').load(root+"getLastest.php", function(res) {	
+					var $table = res;
+					$(this).html($table);
+					$('table tr:first').remove();
+
+					$('table tr').each(function(k,elm){
+						var img = $(elm).find('a:first').attr('onmouseover');
+						var titre = $(elm).find('a:first').text();
+						var href = $(elm).find('a:first').attr('href');
+
+						img = img.replace("montre('<img src=..", 'http://www.anime-ultime.net');
+						img = img.replace("/>');", '');
+						img = img.replace("></a>');", '');
+
+						if(href!='undefined'){
+							var new_href = 'http://www.anime-ultime.net/'+href;
+											
+							o_datas.push({
+								'titre' : titre,
+								'lien' 	: new_href,
+								'img' 	: 'url('+img+')',
+							});	
+						}
+					});
+
+					remove_loader();
+					print_page(o_datas, 0, 17);
 				});
 				break;
 				
 			case 'Animes':
 			case 'Dramas':
 			case 'Tokusatsus':
-				$(this).siblings().hide();
-
 				$('.form-search').show();
-				$('#form-search').show();
-
-				$('h3.titre').remove();
 
 				/**
 				* Récupération des animes depuis un site distant
