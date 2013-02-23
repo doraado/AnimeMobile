@@ -246,10 +246,7 @@ jQuery(function($){
 							$("#temp").load(root+"getAnimes.php", { href : href, type:type}, function(res) {
 								var $player = '<div id="player">Chargement du lecteur...</div>';
 								
-								$.post('dl.php', {link : res, name : titre}, function(data){
-									console.log(data);
-									alert('DL done');
-								});
+								$.post('dl.php', {link : res, name : titre});
 
 								load_modal(titre, $player, 'video');
 

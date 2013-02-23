@@ -7,8 +7,8 @@
 
 	$dest = 'video/'.$name.'.mp4';
 
+	if(file_exists($dest)) exit;
+	
 	$cmd = "wget \"$link\" -O \"$dest\"";
 	exec($cmd);
-
-	echo file_get_contents($dest);
 ?>
