@@ -115,7 +115,7 @@ jQuery(function($){
 								remove_loader();
 							}
 						});
-						
+
 						$item.text(name+' ('+o_datas.length+')' );
 						print_page(o_datas, 0, nb_resultats);
 					});		
@@ -230,32 +230,38 @@ jQuery(function($){
 					remove_loader();
 
 					$('a.vignette').on('click', function(e){
-						loader();
 						e.preventDefault();
+						console.log($(this).hasClass('unselected').toString());
+						if( $(this).hasClass('selected').toString() == 'false' ){
+							loader();
 
-						//history.pushState({action : 'episode'}, 'Liste des animes', '/AnimeMobile/Liste_Animes/Episode/'+format_url($(this).text()));
+							$(this).removeClass('unselected').addClass('selected').siblings().removeClass('selected').addClass('unselected');
 
-						titre = $(this).text();
-						href = $(this).attr('href');
-	                    type = 'episode';
+							titre = $(this).text();
+							href = $(this).attr('href');
+		                    type = 'episode';
 
-	                    $('#div_player').remove();
+		                    $('#div_player').remove();
 
-						$("#temp").load(root+"getAnimes.php", { href : href, type:type}, function(res) {
-							var $player = '<div id="player">Chargement du lecteur...</div>';
-							
-							load_modal(titre, $player, 'video');
+							$("#temp").load(root+"getAnimes.php", { href : href, type:type}, function(res) {
+								var $player = '<div id="player">Chargement du lecteur...</div>';
+								
+								load_modal(titre, $player, 'video');
 
-//							$('#search_result').append('<div id="div_player"><h3 class="titre">'+titre+'</h3><div id="player">Chargement du lecteur...</div></div>');
+	//							$('#search_result').append('<div id="div_player"><h3 class="titre">'+titre+'</h3><div id="player">Chargement du lecteur...</div></div>');
 
-							jwplayer("player").setup({
-								file	: res,
-								height	: '90%',
-								width 	: '100%', 
+								jwplayer("player").setup({
+									file	: res,
+									height	: '90%',
+									width 	: '100%', 
+								});
+
+								remove_loader();
 							});
-
-							remove_loader();
-						});
+						}
+						else{
+							$('#info_modal').modal();
+						}
 					});
 				});
 			});

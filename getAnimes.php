@@ -23,16 +23,19 @@
 		$a_html = explode('Synopsis:', $html);
 
 		if( isset($a_html[1]) ){
-			$a_html = explode('Source:', $a_html[1]);
-			$a_html = explode('Source :', $a_html[0]);
-
-			$synopsis = str_replace('style="color: #0040FF"', '', str_replace('<strong>', '', $a_html[0]));
-			$synopsis = str_replace('style="color: #FF8000"', '', $synopsis);
-			$info = '<div id="synopsis">'.$synopsis.'</div>';
+			
 		}
 		else{
-			$info = '';
+			$a_html = explode('Synopsis :', $html);
 		}
+
+		$a_html = explode('Source:', $a_html[1]);
+		$a_html = explode('Source :', $a_html[0]);
+
+		$synopsis = str_replace('style="color: #0040FF"', '', str_replace('<strong>', '', $a_html[0]));
+		$synopsis = str_replace('style="color: #FF8000"', '', $synopsis);
+		$synopsis = str_replace('style="color: #ff9000"', '', $synopsis);
+		$info = '<div id="synopsis">'.$synopsis.'</div>';
 
 		$a_html = explode('<table class="jtable" align="center" cellspacing="0"  cellpadding="1">', $html);
 		$a_html = explode('</table>', $a_html[1]);

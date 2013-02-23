@@ -45,6 +45,14 @@ footer{
 	text-align: center;
 }
 
+.unselected{
+	opacity: 0.5;
+}
+
+.selected{
+	opacity: 1;
+}
+
 .vignette{
 	display : inline-table;
 	margin:5px;
