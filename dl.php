@@ -7,8 +7,7 @@
 
 	$dest = 'video/'.$name.'.mp4';
 
-	$cmd = "wget -q \" $link\" - O $dest";
-
+	$cmd = "wget \"$link\" -O \"$dest\"";
 	exec($cmd);
 
 	echo file_get_contents($dest);
