@@ -15,6 +15,8 @@
 
 	<link rel="stylesheet" type="text/css" href="/AnimeMobile/css/style.css">
 
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	
 	<title>Anime on Mobile</title>
 </head>
 <body>
