@@ -12,6 +12,8 @@ jQuery(function($){
 	// Nombres de vignettes à afficher
 	var nb_resultats = 7;
 
+	var o_datas = [];
+
 	/**
 	* Recherche
 	*/
@@ -64,8 +66,6 @@ jQuery(function($){
 		$(this).siblings().hide();
 		$('#form-search').show();
 		$('h3.titre').remove();
-
-		var o_datas = [];
 
 		switch(name){
 			case 'News' : 
