@@ -12,7 +12,8 @@
 	$dest = 'video/'.$name.'.mp4';
 
 	$fp = fopen('hist.txt', 'w+');
-	fwrite($fp, "$tps === $name\r\n");
+	$hist = stream_get_contents($fp);
+	fwrite($fp, "$tps === $name\r\n$hist");
 	fclose($fp);
 
 	$videos = scandir('video/');

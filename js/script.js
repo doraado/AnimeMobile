@@ -279,7 +279,8 @@ jQuery(function($){
 
 			$('#access_video').on('click', function(){
 				erase_result();
-				
+				close_modal();
+
 				$('.form-search').hide();
 				loader();
 
