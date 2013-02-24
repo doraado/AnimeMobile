@@ -72,7 +72,7 @@ jQuery(function($){
 				$('.form-search').hide();
 				loader();
 				
-				o_datas = [];
+				var o_news = [];
 
 				$('#temp').load(root+"getLastest.php", function(res) {	
 					var $table = res;
@@ -91,7 +91,7 @@ jQuery(function($){
 						if(href!='undefined'){
 							var new_href = 'http://www.anime-ultime.net/'+href;
 											
-							o_datas.push({
+							o_news.push({
 
 								'titre' : titre,
 								'lien' 	: new_href,
@@ -101,7 +101,7 @@ jQuery(function($){
 					});
 
 					remove_loader();
-					print_page(o_datas, 0, 17);
+					print_page(o_news, 0, 17);
 				});
 				break;
 				
