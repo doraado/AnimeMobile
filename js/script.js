@@ -46,11 +46,42 @@ jQuery(function($){
 			print_page(res_animes, 0, nb_resultats);
 			//open_anime();
 		}
+		else if(val.length == 0){
+			erase_result();
+			print_page(o_datas, 0, nb_resultats);
+		}
 		else{
 			$(this).parent().parent().find('p').remove();
 			$(this).parent().after('<p>Saisis au moins 2 lettres</p>');
 		}
-		 
+	});
+
+	$('#btn_search_init').click(function(){
+		$('#search_input').val('').trigger('keyup');
+	});
+
+	$('#btn_search').click(function(){
+		var input = $('#search_input');
+		var val = input.val();
+
+		var regexp = '\\b(.*)('+val+')(.*)\\b';
+
+		var res_animes = [];
+
+		if(val.length > 1){
+			$(this).parent().parent().find('p').remove();
+
+			$.each(o_datas, function( k, v){
+				var titre = v.titre;
+
+				var resultats = titre.match(new RegExp(regexp, 'i'));
+				
+				if(resultats) res_animes.push(v);
+			});
+
+			erase_result();
+			print_page(res_animes, 0, nb_resultats);
+		}
 	});
 
 	/**
@@ -63,13 +94,13 @@ jQuery(function($){
 		var name = $(this).attr('data-action');
 		var href = $(this).attr('data-href');
 
-		$(this).siblings().hide();
+		$(this).hide().siblings().hide();
 		$('#form-search').show();
 		$('h3.titre').remove();
 
 		switch(name){
 			case 'News' : 
-				$('.form-search').hide();
+				$('.form_search').hide();
 				loader();
 				
 				var o_news = [];
@@ -111,7 +142,7 @@ jQuery(function($){
 			case 'Animes':
 			case 'Dramas':
 			case 'Tokusatsus':
-				$('.form-search').show();
+				$('.form_search').show();
 
 				/**
 				* Récupération des animes depuis un site distant
@@ -298,7 +329,7 @@ jQuery(function($){
 				erase_result();
 				close_modal();
 
-				$('.form-search').hide();
+				$('.form_search').hide();
 				loader();
 
 				$('h3.titre').remove();

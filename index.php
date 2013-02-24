@@ -134,14 +134,18 @@
 			</div>
 
 			<div id="form-search" class="row-fluid">
-				<form class="form-search">
+				<form class="form_search">
 					<div class="input-append">
-						<input id="search_input" type="text" class="span12 search-query" placeholder="Taper un titre">
-						<button type="submit" class="btn"><i class="icon-search"></i></button>
+						<input id="search_input" type="text" class="span12" placeholder="Taper un titre">
+  						
+						<button id="btn_search_init"type="button" class="btn"><i class="icon-refresh"></i></button>
+						<button id="btn_search" type="button" class="btn"><i class="icon-search"></i></button>
+						
 					</div>
 				</form>
-
-				<div id="search_result"></dsiv>
+				<div class="span12">
+					<div id="search_result"></div>
+				</div>
 			</div>
 
 		</div>
