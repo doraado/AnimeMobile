@@ -67,12 +67,12 @@ jQuery(function($){
 		$('#form-search').show();
 		$('h3.titre').remove();
 
-		o_datas = [];
-
 		switch(name){
 			case 'News' : 
 				$('.form-search').hide();
 				loader();
+				
+				o_datas = [];
 
 				$('#temp').load(root+"getLastest.php", function(res) {	
 					var $table = res;
