@@ -58,7 +58,7 @@ footer{
 	display : inline-table;
 	margin:5px;
 
-	background-color : #333;
+	background-color : #1A0033;
 	color : #EEE;
 	line-height: 10px;
 	font-size : 8px;
@@ -75,13 +75,27 @@ footer{
 	border-radius: 10px;
 
 	-webkit-box-shadow: 5px 5px 10px #000;
-		-moz-box-shadow: 5px 5px 10px #000;
-		box-shadow: 5px 5px 10px #000;	
+	-moz-box-shadow: 5px 5px 10px #000;
+	box-shadow: 5px 5px 10px #000;	
 }
 
 .vignette:hover{
 	text-decoration: none;
 	color: #DDD;
+}
+
+.type{	
+	position: absolute;
+	padding: 5px;
+
+	background-color: #1A0033;
+	opacity: 0.8;
+
+	display: inline-block;
+
+    -webkit-border-radius:10px 0 10px 0 ;
+	-moz-border-radius:10px 0 10px 0 ;
+	border-radius:10px 0 10px 0 ;	
 }
 
 .v_titre{

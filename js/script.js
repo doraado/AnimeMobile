@@ -84,15 +84,18 @@ jQuery(function($){
 						var titre = $(elm).find('a:first').text();
 						var href = $(elm).find('a:first').attr('href');
 
+						var type = $(elm).find('td:first').next().next().next().next().text();
+						var number = $(elm).find('td:first').next().next().text();
+
 						img = img.replace("montre('<img src=..", 'http://www.anime-ultime.net');
 						img = img.replace("/>');", '');
 						img = img.replace("></a>');", '');
 
-						if(href!='undefined'){
+						if(href!='undefined' && type!='OST'){
 							var new_href = 'http://www.anime-ultime.net/'+href;
 											
 							o_news.push({
-
+								'type' : type+' '+number,
 								'titre' : titre,
 								'lien' 	: new_href,
 								'img' 	: 'url('+img+')',
@@ -133,6 +136,9 @@ jQuery(function($){
 							var titre = $(elm).find('a').text();
 							var href = $(elm).find('a').attr('href');
 
+							var type = $(elm).find('td:first').next().text();
+							var avancement = $(elm).find('td:first').next().next().text();
+	
 							img = img.replace("montre('<img src=", '');
 							img = img.replace("></a>');", '');
 
@@ -140,6 +146,7 @@ jQuery(function($){
 								var new_href = 'http://www.anime-ultime.net/'+href;
 											
 								o_datas.push({
+									'type' : type+' '+avancement,
 									'titre' : titre,
 									'lien' 	: new_href,
 									'img' 	: 'url('+img+')',
@@ -194,7 +201,14 @@ jQuery(function($){
 
 	function print_list(obj){
 		$.each(obj, function(k, elm){
-			var new_elm = '<a class="vignette" href="'+elm.lien+'"><div class="v_titre">'+elm.titre+'</div></a>';
+			var new_elm = '<a class="vignette" href="'+elm.lien+'">';
+
+			if(elm.type){
+				new_elm += '<div class="type">'+elm.type+'</div>';
+			} 
+
+			new_elm += '<div class="v_titre">'+elm.titre+'</div></a>';
+
 			$('#search_result').append( new_elm );
 			$('#search_result').find('a:last').css('background-image', elm.img );
 		});
