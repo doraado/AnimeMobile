@@ -257,7 +257,8 @@ jQuery(function($){
 					
 				});
 			var synopsis = $('#synopsis').html();
-			var s_img = '<img src="'+img.replace('url(', '').replace(')', '')+'" class="anime_img">';
+			
+			var s_img = '<img src='+img.replace('url(', '').replace(')', '')+' class="anime_img">';
 
 			if(synopsis.length == 0) synopsis = '<br>Information non disponible.'; 
 			
