@@ -240,7 +240,7 @@ jQuery(function($){
 
 			new_elm += '<div class="v_titre">'+elm.titre+'</div></a>';
 
-			$('#search_result').append( new_elm );
+			if(elm.lien != 'http://www.anime-ultime.net/undefined') $('#search_result').append( new_elm );
 			$('#search_result').find('a:last').css('background-image', elm.img );
 		});
 	}
@@ -250,7 +250,7 @@ jQuery(function($){
 		$('#modal-body').html(body);
 
 		if(type == 'video'){
-			$('#modal-footer').html('<p>Bon visionnage</p>');
+			$('#modal-footer').html('<p>Si la vidéo ne se lit pas <button class="btn btn-mini btn-inverse" id="btn_qt">Clicker ici </button> Bon visionnage !</p>');
 		}
 		else{
 			$('#modal-footer').html('<a id ="access_video" class="item">Accéder aux vidéos</a><a id ="next_vignette" class="item">Suivant</a>');
@@ -354,18 +354,24 @@ jQuery(function($){
 
 							$("#temp").load(root+"getAnimes.php", { href : href, type:type}, function(res) {
 								var $player = '<div id="player">Chargement du lecteur...</div>';
-								
+
 								$.post('dl.php', {link : res, name : titre});
 
 								load_modal(titre, $player, 'video');
 
-	//							$('#search_result').append('<div id="div_player"><h3 class="titre">'+titre+'</h3><div id="player">Chargement du lecteur...</div></div>');
-
 								jwplayer("player").setup({
 									file	: res,
 									height	: '90%',
-									width 	: '100%', 
+									width 	: '100%',
+									provider  : 'http',
 								});
+
+								$('#btn_qt').on('click', function(){
+									$player = '<EMBED id="player" src="'+res+'" allowfullscreen="true" scale="tofit" WIDTH="100%" HEIGHT="99%" AUTOPLAY="true" CONTROLLER="true" PLUGINSPAGE="http://www.apple.com/quicktime/download/"></EMBED>';
+    
+									load_modal(titre, $player, 'video');
+								});
+								
 
 								remove_loader();
 							});

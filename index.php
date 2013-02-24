@@ -176,7 +176,8 @@
 	-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/AnimeMobile/js/bootstrap.min.js"></script>
-
+	
+	<script src="http://vjs.zencdn.net/c/video.js"></script>
 	<script type="text/javascript" src="/AnimeMobile/jwplayer/jwplayer.js"></script>
 
 	<script type="text/javascript" src="/AnimeMobile/js/script.js"></script>
