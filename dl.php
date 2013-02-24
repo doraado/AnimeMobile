@@ -11,8 +11,11 @@
 
 	$dest = 'video/'.$name.'.mp4';
 
-	$fp = fopen('hist.txt', 'w+');
+	$fp = fopen('hist.txt', 'r+');
 	$hist = stream_get_contents($fp);
+	fclose($fp);
+
+	$fp = fopen('hist.txt', 'w+');
 	fwrite($fp, "$tps === $name\r\n$hist");
 	fclose($fp);
 
