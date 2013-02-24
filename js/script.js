@@ -9,10 +9,10 @@ jQuery(function($){
 
 	var root = '/AnimeMobile/';
 
-	// Nombres de vignettes à afficher
-	var nb_resultats = 7;
-
 	var o_datas = [];
+
+	// Nombres de vignettes à afficher
+	var nb_resultats = get_max_vignette();
 
 	/**
 	* Recherche
@@ -412,5 +412,40 @@ jQuery(function($){
 		localStorage.clear();
 	});
 
+	function get_max_vignette(){
+		var footer = $('footer').height();
+		var navbar = $('.navbar').height();
+		var form = $('.form_search').height();
+
+		var max_vignette=6;
+
+		var vignette = 106;
+
+		if (document.body && document.body.offsetWidth) {
+			winW = document.body.offsetWidth;
+			winH = document.body.offsetHeight;
+		}
+		if (document.compatMode=='CSS1Compat' &&
+		    document.documentElement &&
+		    document.documentElement.offsetWidth ) {
+			winW = document.documentElement.offsetWidth;
+			winH = document.documentElement.offsetHeight;
+		}
+		if (window.innerWidth && window.innerHeight) {
+			winW = window.innerWidth;
+			winH = window.innerHeight;
+		}
+
+		winW -= (40+100);
+		winH -= (footer+navbar+form);
+
+		var res = (Math.floor(winH/vignette)-1) * Math.round(winW/vignette);
+
+		if(max_vignette>res){
+			res = max_vignette;
+		}
+
+		return res-1;
+	}
 });
 	
