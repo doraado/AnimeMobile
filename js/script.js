@@ -67,6 +67,8 @@ jQuery(function($){
 		$('#form-search').show();
 		$('h3.titre').remove();
 
+		o_datas = [];
+
 		switch(name){
 			case 'News' : 
 				$('.form-search').hide();
