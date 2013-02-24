@@ -143,9 +143,9 @@
 						
 					</div>
 				</form>
-				<div class="span12">
-					<div id="search_result"></div>
-				</div>
+			
+				<div id="search_result"></div>
+				
 			</div>
 
 		</div>
@@ -153,8 +153,7 @@
 	</div>
 
 	<footer class="footer">
-		<p>2013 &copy; Anime on Mobile</p>
-		<p>Designé et Développé par KHub </p>
+		2013 &copy; Anime on Mobile | Designé et Développé par KHub
 	</footer>
 
 	<!-- Modal -->

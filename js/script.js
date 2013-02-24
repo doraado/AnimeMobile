@@ -94,7 +94,7 @@ jQuery(function($){
 		var name = $(this).attr('data-action');
 		var href = $(this).attr('data-href');
 
-		$(this).hide().siblings().hide();
+		$(this).parent().hide();
 		$('#form-search').show();
 		$('h3.titre').remove();
 
