@@ -1,12 +1,13 @@
 <?php require_once 'app/dm/Dailymotion.php'; ?>
 <!DOCTYPE HTML>		
-<html>
+<html manifest="cache.manifest">
 <head>
 	<meta charset="utf-8">
-	<meta name="author" content="KelsDEV">
+	<meta name="author" content="Kelson KIEN">
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
 	
 	<link rel="stylesheet" type="text/css" href="/AnimeMobile/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/AnimeMobile/css/bootstrap-responsive.min.css">
