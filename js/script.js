@@ -96,8 +96,14 @@ jQuery(function($){
 	});
 
 	/**
-	* Main Menu
+	* Menu
 	*/
+	$('#clear').click(function(event){
+		event.prevent.Default();
+		localStorage.clear();
+		$('#btn_navbar').trigger('click');
+	});
+	
 	$('#main_menu .item').click( function(event){
 		event.preventDefault();
 		
@@ -159,7 +165,7 @@ jQuery(function($){
 				/**
 				* Récupération des animes depuis un site distant
 				*/
-				if(typeof localStorage[name]=='undefined' ) {
+				if(typeof localStorage.name=='undefined' ) {
 					
 					loader();
 						
@@ -197,7 +203,7 @@ jQuery(function($){
 							}
 
 							if( $('.table tr').length - 1 == k ) {
-								localStorage[name] = JSON.stringify(o_datas);
+								localStorage.name = JSON.stringify(o_datas);
 								remove_loader();
 							}
 
@@ -214,7 +220,7 @@ jQuery(function($){
 					});		
 				}
 				else{
-					o_datas = JSON.parse(localStorage[name]);
+					o_datas = JSON.parse(localStorage.name);
 					$item.text(name+' ('+o_datas.length+')' );
 					print_page(o_datas, 0, nb_resultats);
 				}
@@ -425,12 +431,6 @@ jQuery(function($){
 	function slice_obj(obj, index, size){
 		return obj.slice(index, index+size);
 	}
-
-	$('#clear').click(function(event){
-		event.prevent.Default();
-		localStorage.clear();
-		$('#btn_navbar').trigger('click');
-	});
 
 	function get_max_vignette(){
 		var footer = $('footer').height();
