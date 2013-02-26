@@ -425,8 +425,10 @@ jQuery(function($){
 		return obj.slice(index, index+size);
 	}
 
-	$('#clear').click(function(){
+	$('#clear').click(function(event){
+		event.prevent.Default();
 		localStorage.clear();
+		$('#btn_navbar').trigger('click');
 	});
 
 	function get_max_vignette(){
