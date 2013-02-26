@@ -15,6 +15,16 @@ jQuery(function($){
 	var nb_resultats = get_max_vignette();
 
 	/**
+	 * Retour à l'acceuil 
+	 */
+	$('.brand').click(function(event){
+		event.preventDefault();
+		
+		$('#main_menu').fadeIn();
+		$('#form-search').hide();
+	});
+	
+	/**
 	* Recherche
 	*/
 	$('#search_input').keyup(function(){
