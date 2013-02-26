@@ -1,6 +1,6 @@
 <?php require_once 'app/dm/Dailymotion.php'; ?>
 <!DOCTYPE HTML>		
-<html manifest="cache.manifest">
+<html>
 <head>
 	<meta charset="utf-8">
 	<meta name="author" content="Kelson KIEN">
