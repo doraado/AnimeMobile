@@ -22,6 +22,7 @@ jQuery(function($){
 		
 		$('#main_menu').fadeIn();
 		$('#form-search').hide();
+		erase_result();
 	});
 	
 	/**
