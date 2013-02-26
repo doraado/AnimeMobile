@@ -154,6 +154,7 @@ jQuery(function($){
 			case 'Dramas':
 			case 'Tokusatsus':
 				$('.form_search').show();
+				erase_result();
 
 				/**
 				* Récupération des animes depuis un site distant
