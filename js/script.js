@@ -99,7 +99,7 @@ jQuery(function($){
 	* Menu
 	*/
 	$('#clear').click(function(event){
-		event.prevent.Default();
+		event.preventDefault();
 		localStorage.clear();
 		$('#btn_navbar').trigger('click');
 	});
@@ -165,7 +165,7 @@ jQuery(function($){
 				/**
 				* Récupération des animes depuis un site distant
 				*/
-				if(typeof localStorage.name=='undefined' ) {
+				if(typeof localStorage[name]=='undefined' ) {
 					
 					loader();
 						
@@ -203,7 +203,7 @@ jQuery(function($){
 							}
 
 							if( $('.table tr').length - 1 == k ) {
-								localStorage.name = JSON.stringify(o_datas);
+								localStorage[name] = JSON.stringify(o_datas);
 								remove_loader();
 							}
 
@@ -220,7 +220,7 @@ jQuery(function($){
 					});		
 				}
 				else{
-					o_datas = JSON.parse(localStorage.name);
+					o_datas = JSON.parse(localStorage[name]);
 					$item.text(name+' ('+o_datas.length+')' );
 					print_page(o_datas, 0, nb_resultats);
 				}
