@@ -9,12 +9,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	
-	<link rel="stylesheet" type="text/css" href="/AnimeMobile/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/AnimeMobile/css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
 
 	<link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="/AnimeMobile/css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	<link rel="apple-touch-icon" href="img/iphone.png" />
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
@@ -177,12 +177,12 @@
 		Loaded Javascript Files 
 	-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/AnimeMobile/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 
 	<script src="http://vjs.zencdn.net/c/video.js"></script>
-	<script type="text/javascript" src="/AnimeMobile/jwplayer/jwplayer.js"></script>
+	<script type="text/javascript" src="jwplayer/jwplayer.js"></script>
 
-	<script type="text/javascript" src="/AnimeMobile/js/script.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
 
 </body>
 </html>
