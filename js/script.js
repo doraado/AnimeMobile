@@ -7,7 +7,7 @@ jQuery(function($){
 	var href;
 	var type;
 
-	var root = '/AnimeMobile/';
+	var root = '/';
 
 	var o_datas = [];
 
