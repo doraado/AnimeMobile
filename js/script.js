@@ -18,7 +18,8 @@ jQuery(function($){
 	 * Retour à l'acceuil 
 	 */
 	$('.brand').click(function(event){
-		if($('#main_menu')){
+		console.log($('#main_menu'));
+		if($('#main_menu')!="undefined"){
 			event.preventDefault();
 			$('#main_menu').fadeIn();
 			$('#form-search').hide();
