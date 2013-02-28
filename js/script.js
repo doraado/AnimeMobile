@@ -18,11 +18,12 @@ jQuery(function($){
 	 * Retour à l'acceuil 
 	 */
 	$('.brand').click(function(event){
-		event.preventDefault();
-		
-		$('#main_menu').fadeIn();
-		$('#form-search').hide();
-		erase_result();
+		if($('#main_menu')){
+			event.preventDefault();
+			$('#main_menu').fadeIn();
+			$('#form-search').hide();
+			erase_result();
+		}
 	});
 	
 	/**
