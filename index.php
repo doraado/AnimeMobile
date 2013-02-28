@@ -32,7 +32,7 @@
 	           	 		<span class="icon-bar"></span>
 	          		</button>
 
-          			<a class="brand" href="index.php">A.O.M.</a>
+          			<a class="brand" href="index.php">Stream Mobile</a>
 
           			<div class="nav-collapse collapse">
             			<ul class="nav">
@@ -60,16 +60,16 @@
 				switch ($page) {
 					case 'apropos':
 						?>
-<h3 class="titre">A propos de Anime on Mobile</h3>
+<h3 class="titre">A propos de Stream Mobile</h3>
 <blockquote>
-	Anime on Mobile ? Késako ?!
+	Stream Mobile ? Késako ?!
 </blockquote>
 <p>
-	Créer en 2013, Anime on Mobile est très... high tech ^^'
+	Créer en 2013, Stream Mobile est très... high tech ^^'
 </p>
 <p>
 	Par son nom, il est facile de cerner l'objectif de ce site, sans même être une machine en anglais ;)<br> 
-	En effet, le site a été créer et penser pour les Smartphones. Anime on Mobile, ou A.O.M. pour les intimes, se veut d'offrir un confort en terme de naviguation.
+	En effet, le site a été créer et penser pour les Smartphones. Stream Mobile, ou S.M. pour les intimes, se veut d'offrir un confort en terme de naviguation.
 </p>
 
 <blockquote>
@@ -87,12 +87,10 @@
 	Toujours avoir les smartphones et tablettes en tête. Ces gadgets ne sont majoritairement utilisés que pour de la consultation. Et puis, ca évite de saturer vos mémoires internes =)
 </p>
 <p>
-	Quant à la provenance des vidéos, les liens proviennent tout simplement d'un site bien connu, Anime-Ultime.net
-	<br>
-	Donc, si vous êtes sur un ordinateur ou un mac, je vous invite à naviguer directement sur leur site <a href="www.anime-ultime.net">Anime-Ultime</a>.
+	Quant à la provenance des vidéos, les liens proviennent tout simplement de sites bien connus.
 </p>
 <blockquote>
-	Qu'est-ce qu'on gagne à s'inscrire sur A.O.M. ?
+	Qu'est-ce qu'on gagne à s'inscrire sur S.M. ?
 </blockquote>
 <p>
 	Bonne question, je passe ...<br>
@@ -155,7 +153,7 @@
 	</div>
 
 	<footer class="footer">
-		2013 &copy; Anime on Mobile | Designé et Développé par KHub
+		2013 &copy; Stream Mobile
 	</footer>
 
 	<!-- Modal -->
