@@ -4,8 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="author" content="Kelson KIEN">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
+	<meta name="description" content="Stream Mobile est site qui réuni tout les animes VOSTFR disponible sur internet.">
+	<meta name="keywords" content="mobile, streaming, stream, animes, fansub, animés, mangas, dramas, japonais, vostfr">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	
